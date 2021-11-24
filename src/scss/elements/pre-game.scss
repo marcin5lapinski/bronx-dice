@@ -1,0 +1,44 @@
+.num-of-pl--select {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.num-select {
+    width: 60px;
+}
+
+.choose-player--pregame {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+}
+  
+.players-for-game {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+  
+.start--btn--box {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+  
+.choose-player--pregame {
+    margin: 20px 0;
+}
+  
+.start-btn {
+    background: navy;
+    color: gold;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+  
+.btn:active {
+    box-shadow: 2px 2px 2px black inset;
+}

@@ -1,0 +1,57 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+  
+img {
+    margin: 50px 0 100px 0;
+}
+  
+.sub-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 800px;
+    margin: 100px 0;
+    padding: 50px 20px;
+}
+  
+.buttons-box {
+    display: flex;
+    justify-content: center;
+}
+  
+.new-game-btn-box {
+    display: flex;
+    justify-content: center;
+}
+  
+.btn {
+    padding: 20px 30px;
+    margin: 5px 10px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 24px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px gray;
+    cursor: pointer;    
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn:active {
+    box-shadow: 2px 2px 2px black inset;
+}
+  
+.nps-btn {
+    background: dodgerblue;
+}
+  
+.ng-btn {
+    font-size: 32px;
+    color: gold;
+    background: navy;
+}

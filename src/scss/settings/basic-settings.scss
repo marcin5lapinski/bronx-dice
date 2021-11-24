@@ -1,14 +1,15 @@
 * {
-    box-sizing: border-box;
-    font-size: 14px;
-  }
+  box-sizing: border-box;
+  font-size: 14px;
+}
   
-  body {
-    background-color: #ffffff;
-  }
+body {
+  background-color: #ffffff;
+}
   
-  .container {
-    width: 1220px;
-    margin: 0 auto;
-    line-height: 1.5rem;
-  }
+.container {
+  width: 1220px;
+  height: 100vh;
+  margin: 0 auto;
+  background: aliceblue;
+}
