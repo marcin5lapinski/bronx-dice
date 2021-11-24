@@ -4,7 +4,7 @@ const ChoosePlayer = () => {
     return (
         <div className="choose-player">
             <label htmlFor="players" className="player-label">Player stats</label>
-                <select name="players" id="players" value="" className="custom-select">
+                <select name="players" id="players" className="custom-select">
                     <option value="name1">Name1</option>
                     <option value="name2">Name2</option>
                     <option value="name3">Name3</option>
