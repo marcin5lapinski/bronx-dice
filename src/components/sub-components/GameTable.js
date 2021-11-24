@@ -19,7 +19,7 @@ const GameTable = () => {
                         <td>Zordon</td>
                         <td>Kendra</td>
                         <td>Gonzo</td>
-                        <td>Rick</td>
+                        <td>Ricka</td>
                     </tr>
                 </thead>
                 <tbody>
