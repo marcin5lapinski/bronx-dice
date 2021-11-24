@@ -1,0 +1,36 @@
+table, td {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+  
+td {
+    text-align: center;
+    font-size: 18px;
+    padding: 5px 10px;
+}
+  
+.bonus-row {
+    border: 3px solid black;
+}
+  
+.sum-row {
+    border: 5px solid black;
+}
+  
+table {
+    border-top: 2px solid transparent;
+}
+  
+.turn-mark {
+    border-top: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-left: 2px solid transparent;
+}
+  
+.blank-cell {
+    background: black;
+}
+  
+.total-cell {
+    background: dodgerblue;
+}

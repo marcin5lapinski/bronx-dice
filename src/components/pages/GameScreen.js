@@ -1,8 +1,13 @@
 import React from "react";
+import GameTable from "../sub-components/GameTable"
 
 const GameScreen = () => {
     return (
-        <div>Game screen</div>
+        <div className="container">
+            <div className="game-container">
+
+            </div>
+        </div>
     );
 }
 
