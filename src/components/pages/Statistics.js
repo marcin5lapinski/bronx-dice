@@ -1,27 +1,58 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import app from "../../firebase/firebaseConfig";
+import {collection, getDocs, getFirestore} from "firebase/firestore";
 
-const ChoosePlayer = () => {
+
+
+const ChoosePlayer = ( { players, playerData, setPlayerData } ) => {
+    const [selectValue, setSelectValue] = useState(playerData.name);
+
+    const getPlayerData = (playerName) => {
+        players.map((el) => {
+            if (el.name === playerName) {
+                return setPlayerData(el);
+            }
+        })
+    }
+
+    getPlayerData(selectValue);
+
     return (
         <div className="choose-player">
             <label htmlFor="players" className="player-label">Player stats</label>
-                <select name="players" id="players" className="custom-select">
-                    <option value="name1">Name1</option>
-                    <option value="name2">Name2</option>
-                    <option value="name3">Name3</option>
-                    <option value="name4">Name4</option>
+                <select name="players" id="players" className="custom-select" value={selectValue} onChange={e => setSelectValue(e.target.value)}>
+                    {
+                        players.map((el) => {
+                            return (
+                                <option key={el.name} value={el.name}>{el.name}</option>
+                            )
+                        })
+                    }
                 </select>
         </div>
     )
 }
 
-const StatisticsData = () => {
+const StatisticsData = ( { playerData } ) => {
+
+    const maxPoints = Math.max(...playerData.points);
+    const avgPoints = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
+
+    const setMaxPoints = (value) => {
+        if (value === -Infinity) {
+            return 0;
+        } else {
+            return value;
+        }
+    }
+
     return (
         <div className="statistics">
-            <h2 className="stat">Games played: <span className="games-played">11</span></h2>
-            <h2 className="stat">Games won: <span className="games-won">3</span></h2>
-            <h2 className="stat">Max points: <span className="max-pts">243</span></h2>
-            <h2 className="stat">Avg points: <span className="avg-pts">198.7</span></h2>
-         </div>
+            <h2 className="stat">Games played: <span>{playerData.games}</span></h2>
+            <h2 className="stat">Games won: <span>{playerData.won}</span></h2>
+            <h2 className="stat">Max points: <span>{setMaxPoints(maxPoints)}</span></h2>
+            <h2 className="stat">Avg points: <span>{isNaN(avgPoints(playerData.points)) ? '0' : avgPoints(playerData.points)}</span></h2>
+        </div>
     )
 }
 
@@ -35,12 +66,36 @@ const ActionButtons = () => {
 }
 
 const Statistics = () => {
+    const [users, setUsers] = useState([]);
+    const [playerData, setPlayerData] = useState({
+        name: "Zordon",
+        games: 2,
+        won: 0,
+        points: [99, 152],
+    });
+
+    const getUsers = async () => {
+        const db = getFirestore(app);
+        const querySnapshot = await getDocs(collection(db, "users"));
+        const arr = [];
+        querySnapshot.forEach((doc) => {
+            arr.push(doc.data());
+            //console.log(doc.data());
+        });
+        setUsers(arr);
+    }
+  
+    useEffect(() => {
+        getUsers();
+    }, []);
+
+
     return (
         <div className="container">
             <a href="/"><button className="back-btn"></button></a>
             <div className="inner-container">
-                <ChoosePlayer />
-                <StatisticsData />
+                <ChoosePlayer players={users} playerData={playerData} setPlayerData={setPlayerData} />
+                <StatisticsData playerData={playerData} />
                 <ActionButtons />
             </div>
          </div>
