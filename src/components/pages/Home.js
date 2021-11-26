@@ -14,7 +14,7 @@ const Home = () => {
                         <button className="btn nps-btn">Statistics</button>
                      </a>
                  </div>
-                <div class="new-game-btn-box">
+                <div className="new-game-btn-box">
                     <a href="/pre-game">
                         <button className="btn ng-btn">New game</button>
                     </a>
