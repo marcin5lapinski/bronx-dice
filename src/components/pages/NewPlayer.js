@@ -8,6 +8,7 @@ const NewPlayer = () => {
     const games = 0;
     const won = 0;
     const points = [];
+    const id = '';
     const [success, setSuccess] = useState('');
 
     const submitHandler = async (e) => {
@@ -18,6 +19,7 @@ const NewPlayer = () => {
             games,
             won,
             points,
+            id,
         });
         if (docRef) {
             setSuccess(true);

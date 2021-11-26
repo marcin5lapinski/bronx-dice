@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import app from "../../firebase/firebaseConfig";
-import {collection, getDocs, getFirestore} from "firebase/firestore";
+import {collection, getDocs, getFirestore, writeBatch, setDoc} from "firebase/firestore";
 
 
 
@@ -16,6 +16,7 @@ const ChoosePlayer = ( { players, playerData, setPlayerData } ) => {
     }
 
     getPlayerData(selectValue);
+    console.log(playerData);
 
     return (
         <div className="choose-player">
@@ -72,6 +73,7 @@ const Statistics = () => {
         games: 2,
         won: 0,
         points: [99, 152],
+        id: '6XOhIkMtcasdiIfWSCV5',
     });
 
     const getUsers = async () => {
