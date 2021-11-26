@@ -25,8 +25,8 @@ const ChoosePlayer = ( { players, playerData, setPlayerData } ) => {
                     {
                         players.map((el) => {
                             return (
-                                <option key={el.name} value={el.name}>{el.name}</option>
-                            )
+                                <option key={el.id} value={el.name}>{el.name}</option>
+                            );
                         })
                     }
                 </select>
@@ -52,7 +52,7 @@ const StatisticsData = ( { playerData } ) => {
             <h2 className="stat">Games played: <span>{playerData.games}</span></h2>
             <h2 className="stat">Games won: <span>{playerData.won}</span></h2>
             <h2 className="stat">Max points: <span>{setMaxPoints(maxPoints)}</span></h2>
-            <h2 className="stat">Avg points: <span>{isNaN(avgPoints(playerData.points)) ? '0' : avgPoints(playerData.points)}</span></h2>
+            <h2 className="stat">Avg points: <span>{isNaN(avgPoints(playerData.points)) ? '0' : +avgPoints(playerData.points).toFixed(1)}</span></h2>
         </div>
     )
 }
