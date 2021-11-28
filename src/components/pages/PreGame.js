@@ -22,46 +22,112 @@ const NumberOfPlayersSelect = ({ setNumberOfPlayers }) => {
     )
 }
 
-const PlayersSelect = ( { players, numberOfPlayers } ) => {
-    const [selectValue, setSelectValue] = useState('Zordon');
-    const numbers = [1];
+const PlayersSelect = ( {
+                        players,
+                        numberOfPlayers,
+                        setPlayerOne, playerOne,
+                        setPlayerTwo, playerTwo,
+                        setPlayerThree, playerThree,
+                        setPlayerFour, playerFour,
+                        setPlayerFive, playerFive
+                        } ) => {
 
-    for (let i = 2; i <= numberOfPlayers; i++) {
-        numbers.push(i);
-    }
 
     return (
         <div className="players-for-game">
             
-                {
-                    numbers.map((el) => {
-                        return (
-                            <div className="choose-player--pregame" key={el}>
-		                        <label htmlFor={"player" + el} className="player-label">Player {el}.</label>
-                                <select name={"player" + el} id={"player" + el} className="custom-select" value={selectValue} onChange={e => setSelectValue(e.target.value)}>
+            <div className="choose-player--pregame">
+		        <label htmlFor="player-one" className="player-label">Player 1.</label>
+                <select name="player-one" id="player-one" className="custom-select" value={playerOne} onChange={e => setPlayerOne(e.target.value)}>
 
-                                    {   
-                                        players.map((el) => {
-                                            return (
-                                                <option key={el.id} value={el.name}>{el.name}</option>
-                                            );
-                                        })
-                                    }
+                    {   
+                        players.map((el) => {
+                            return (
+                                <option key={el.id} value={el.name}>{el.name}</option>
+                            );
+                        })
+                    }
 
-                                </select>
-                            </div>
-                        )
-                    })
-                }
+                </select>
+            </div>
+            <div className="choose-player--pregame" style={{display: numberOfPlayers < 2 ? "none" : "flex"}}>
+		        <label htmlFor="player-two" className="player-label">Player 2.</label>
+                <select name="player-two" id="player-two" className="custom-select" value={playerTwo} onChange={e => setPlayerTwo(e.target.value)}>
+
+                    {   
+                        players.map((el) => {
+                            return (
+                                <option key={el.id} value={el.name}>{el.name}</option>
+                            );
+                        })
+                    }
+
+                </select>
+            </div>
+            <div className="choose-player--pregame" style={{display: numberOfPlayers < 3 ? "none" : "flex"}}>
+		        <label htmlFor="player-three" className="player-label">Player 3.</label>
+                <select name="player-three" id="player-three" className="custom-select" value={playerThree} onChange={e => setPlayerThree(e.target.value)}>
+
+                    {   
+                        players.map((el) => {
+                            return (
+                                <option key={el.id} value={el.name}>{el.name}</option>
+                            );
+                        })
+                    }
+
+                </select>
+            </div>
+            <div className="choose-player--pregame" style={{display: numberOfPlayers < 4 ? "none" : "flex"}}>
+		        <label htmlFor="player-four" className="player-label">Player 4.</label>
+                <select name="player-four" id="player-four" className="custom-select" value={playerFour} onChange={e => setPlayerFour(e.target.value)}>
+
+                    {   
+                        players.map((el) => {
+                            return (
+                                <option key={el.id} value={el.name}>{el.name}</option>
+                            );
+                        })
+                    }
+
+                </select>
+            </div>
+            <div className="choose-player--pregame" style={{display: numberOfPlayers < 5 ? "none" : "flex"}}>
+		        <label htmlFor="player-five" className="player-label">Player 5.</label>
+                <select name="player-five" id="player-five" className="custom-select" value={playerFive} onChange={e => setPlayerFive(e.target.value)}>
+
+                    {   
+                        players.map((el) => {
+                            return (
+                                <option key={el.id} value={el.name}>{el.name}</option>
+                            );
+                        })
+                    }
+
+                </select>
+            </div>
+            
 
         </div>
     )
 }
 
-const StartButton = () => {
+const StartButton = ({ playerOne, playerTwo, playerThree, playerFour, playerFive, numberOfPlayers }) => {
+    const playersArray = [playerOne, playerTwo, playerThree, playerFour, playerFive];
+    playersArray.length = numberOfPlayers;
+
+    const playerRepeats = (arr) => {
+        for (let i = 0; i < arr.length; i++) {
+          if (arr.indexOf(arr[i]) !== arr.lastIndexOf(arr[i])) {
+            return false;
+          }
+        }
+        return true;
+      }
+
     return (
         <div className="start--btn--box">
-            <a href="/game-screen"><button className="btn start-btn">Start</button></a>
+            { playerRepeats(playersArray) ? <a href="/game-screen"><button className="btn start-btn">Start</button></a> : <p className="warning">Choose different players!</p>}
         </div>
     )
 }
@@ -69,6 +135,11 @@ const StartButton = () => {
 const PreGame = () => {
     const [users, setUsers] = useState([]);
     const [numberOfPlayers, setNumberOfPlayers] = useState(1);
+    const [playerOne, setPlayerOne] = useState('Player');
+    const [playerTwo, setPlayerTwo] = useState('Player');
+    const [playerThree, setPlayerThree] = useState('Player');
+    const [playerFour, setPlayerFour] = useState('Player');
+    const [playerFive, setPlayerFive] = useState('Player');
 
     const getUsers = async () => {
         const db = getFirestore(app);
@@ -91,8 +162,23 @@ const PreGame = () => {
             <div className="inner-container">
                 <form className="pre-game--form">
                     <NumberOfPlayersSelect setNumberOfPlayers={setNumberOfPlayers} />
-                    <PlayersSelect players={users} numberOfPlayers={numberOfPlayers} />
-                    <StartButton />
+                    <PlayersSelect 
+                        players={users}
+                        numberOfPlayers={numberOfPlayers}
+                        setPlayerOne={setPlayerOne} playerOne={playerOne}
+                        setPlayerTwo={setPlayerTwo} playerTwo={playerTwo}
+                        setPlayerThree={setPlayerThree} playerThree={playerThree}
+                        setPlayerFour={setPlayerFour} playerFour={playerFour}
+                        setPlayerFive={setPlayerFive} playerFive={playerFive}
+                    />
+                    <StartButton 
+                        playerOne={playerOne}
+                        playerTwo={playerTwo}
+                        playerThree={playerThree}
+                        playerFour={playerFour}
+                        playerFive={playerFive}
+                        numberOfPlayers={numberOfPlayers}
+                    />
                 </form>
             </div>
         </div>
