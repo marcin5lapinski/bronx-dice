@@ -1,28 +1,27 @@
 import React from "react";
 import { useState } from "react";
 import app from "../../firebase/firebaseConfig";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { addDoc, collection, getFirestore, updateDoc, doc } from "firebase/firestore";
 
 const NewPlayer = () => {
     const [name, setName] = useState('');
-    const games = 0;
-    const won = 0;
-    const points = [];
-    const id = '';
     const [success, setSuccess] = useState('');
 
     const submitHandler = async (e) => {
         e.preventDefault();
         const db = getFirestore(app);
         const docRef = await addDoc(collection(db, "users"), {
-            name,
-            games,
-            won,
-            points,
-            id,
+            name: {name},
+            games: 0,
+            won: 0,
+            points: [],
+            id: "",
         });
         if (docRef) {
             setSuccess(true);
+            console.log(docRef.id);
+            const newDocRef = doc(db, "users", docRef.id);
+            await updateDoc(newDocRef, {id: docRef.id});
         }
     }
 
