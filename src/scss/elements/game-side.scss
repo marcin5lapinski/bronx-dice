@@ -1,56 +1,56 @@
 .dice-side {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 20px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 20px;
+}
   
-  .saved-dice {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 450px;
-    height: 150px;
-    margin-top: 30px;
-  }
+.saved-dice {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 450px;
+  height: 150px;
+  margin-top: 30px;
+}
   
-  .saved-single-dice {
-    border: 1px solid gray;
-    width: 110px;
-    height: 110px;
-  }
+.saved-single-dice {
+  border: 1px solid gray;
+  width: 110px;
+  height: 110px;
+}
   
-  .roll-dice-box {
-    border: 5px solid dodgerblue;
-    width: 450px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
+.roll-dice-box {
+  border: 5px solid dodgerblue;
+  width: 450px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
   
-  .rollers {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
+.rollers {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
   
-  .one-dice-box {
-    border: 1px solid gray;
-    width: 110px;
-    height: 110px;
-  }
+.one-dice-box {
+  border: 1px solid gray;
+  width: 110px;
+  height: 110px;
+}
   
-  .rolling-button {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 50px;
-    margin-top: 30px;
-  }
+.rolling-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 50px;
+  margin-top: 30px;
+}
 
-  .roll-btn {
-      background: navy;
-      color: gold;
-  }
+.roll-btn {
+  background: navy;
+  color: gold;
+}

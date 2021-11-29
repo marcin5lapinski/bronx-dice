@@ -2,11 +2,14 @@ import React from "react";
 import GameTable from "../sub-components/GameTable";
 import GameSide from "../sub-components/GameSide";
 
-const GameScreen = () => {
+const GameScreen = ( { playersArray } ) => {
+
+    console.log(playersArray);
+
     return (
         <div className="container">
             <div className="game-container">
-                <GameTable />
+                <GameTable playersArray={playersArray} />
                 <GameSide />
             </div>
         </div>

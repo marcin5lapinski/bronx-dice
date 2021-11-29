@@ -1,88 +1,9 @@
 import React, { useState, useEffect } from "react";
 import app from "../../firebase/firebaseConfig";
 import {collection, getDocs, getFirestore, deleteDoc, doc, updateDoc} from "firebase/firestore";
-
-
-
-const ChoosePlayer = ( { players, playerData, setPlayerData } ) => {
-    const [selectValue, setSelectValue] = useState(playerData.name);
-
-    const getPlayerData = (playerName) => {
-        players.map((el) => {
-            if (el.name === playerName) {
-                return setPlayerData(el);
-            }
-        })
-    }
-
-    getPlayerData(selectValue);
-    //console.log(playerData);
-
-    return (
-        <div className="choose-player">
-            <label htmlFor="players" className="player-label">Player stats</label>
-                <select name="players" id="players" className="custom-select" value={selectValue} onChange={e => setSelectValue(e.target.value)}>
-                    {
-                        players.map((el) => {
-                            return (
-                                <option key={el.id} value={el.name}>{el.name}</option>
-                            );
-                        })
-                    }
-                </select>
-        </div>
-    )
-}
-
-const StatisticsData = ( { playerData } ) => {
-
-    const maxPoints = Math.max(...playerData.points);
-    const avgPoints = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
-
-    const setMaxPoints = (value) => {
-        if (value === -Infinity) {
-            return 0;
-        } else {
-            return value;
-        }
-    }
-
-    return (
-        <div className="statistics">
-            <h2 className="stat">Games played: <span>{playerData.games}</span></h2>
-            <h2 className="stat">Games won: <span>{playerData.won}</span></h2>
-            <h2 className="stat">Max points: <span>{setMaxPoints(maxPoints)}</span></h2>
-            <h2 className="stat">Avg points: <span>{isNaN(avgPoints(playerData.points)) ? '0' : +avgPoints(playerData.points).toFixed(1)}</span></h2>
-        </div>
-    )
-}
-
-const ActionButtons = ( { playerData } ) => {
-
-    const deleteHandler = async () => {
-        const db = getFirestore(app);
-        await deleteDoc(doc(db, "users", playerData.id));
-        window.location.reload(false);
-    }
-
-    const resetHandler = async () => {
-        const db = getFirestore(app);
-        const playerRef = doc(db, "users", playerData.id);
-        await updateDoc(playerRef, {
-            games: 0,
-            won: 0,
-            points: [],
-        });
-        window.location.reload(false);
-    }
-
-    return (
-        <div className="action-btns">
-            <button className="btn reset-btn" onClick={resetHandler}>Reset stats</button>
-            <button className="btn delete-btn" onClick={deleteHandler}>Delete player</button>
-        </div>
-    )
-}
+import ChoosePlayer from "../sub-components/ChoosePlayer";
+import StatisticsData from "../sub-components/StatisticsData";
+import ActionButtons from "../sub-components/ActionButtons";
 
 const Statistics = () => {
     const [users, setUsers] = useState([]);
