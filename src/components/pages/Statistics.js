@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import app from "../../firebase/firebaseConfig";
-import {collection, getDocs, getFirestore, deleteDoc, doc, updateDoc} from "firebase/firestore";
+import {collection, getDocs, getFirestore} from "firebase/firestore";
 import ChoosePlayer from "../sub-components/ChoosePlayer";
 import StatisticsData from "../sub-components/StatisticsData";
 import ActionButtons from "../sub-components/ActionButtons";

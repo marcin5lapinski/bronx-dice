@@ -16,8 +16,8 @@
   
 .saved-single-dice {
   border: 1px solid gray;
-  width: 110px;
-  height: 110px;
+  width: 80px;
+  height: 80px;
 }
   
 .roll-dice-box {
@@ -36,9 +36,9 @@
 }
   
 .one-dice-box {
-  border: 1px solid gray;
-  width: 110px;
-  height: 110px;
+  border: 1px solid transparent;
+  width: 80px;
+  height: 80px;
 }
   
 .rolling-button {
@@ -53,4 +53,52 @@
 .roll-btn {
   background: navy;
   color: gold;
+}
+
+.die1 {
+  background-image: url("../../images/dice-images/dice1.png");
+  background-position: center;
+  background-size: cover;
+  width: 80px;
+  height: 80px;
+}
+
+.die2 {
+  background-image: url("../../images/dice-images/dice2.png");
+  background-position: center;
+  background-size: cover;
+  width: 80px;
+  height: 80px;
+}
+
+.die3 {
+  background-image: url("../../images/dice-images/dice3.png");
+  background-position: center;
+  background-size: cover;
+  width: 80px;
+  height: 80px;
+}
+
+.die4 {
+  background-image: url("../../images/dice-images/dice4.png");
+  background-position: center;
+  background-size: cover;
+  width: 80px;
+  height: 80px;
+}
+
+.die5 {
+  background-image: url("../../images/dice-images/dice5.png");
+  background-position: center;
+  background-size: cover;
+  width: 80px;
+  height: 80px;
+}
+
+.die6 {
+  background-image: url("../../images/dice-images/dice6.png");
+  background-position: center;
+  background-size: cover;
+  width: 80px;
+  height: 80px;
 }
