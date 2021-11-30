@@ -11,6 +11,13 @@ const GameScreen = ( { playersArray } ) => {
         dieFour: 0,
         dieFive: 0
     });
+    const [clicked, setClicked] = useState({
+        one: false,
+        two: false,
+        three: false,
+        four: false,
+        five: false
+    })
     const diceArray = [diceState.dieOne, diceState.dieTwo, diceState.dieThree, diceState.dieFour, diceState.dieFive];
     
     
@@ -21,7 +28,12 @@ const GameScreen = ( { playersArray } ) => {
         <div className="container">
             <div className="game-container">
                 <GameTable playersArray={playersArray} />
-                <GameSide setDiceState={setDiceState} diceArray={diceArray}/>
+                <GameSide 
+                    setDiceState={setDiceState}
+                    diceArray={diceArray}
+                    clicked={clicked}
+                    setClicked={setClicked}
+                    />
             </div>
         </div>
     );
