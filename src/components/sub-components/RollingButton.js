@@ -1,6 +1,6 @@
 import React from "react";
 
-const RollingButton = ( { setDiceState, clicked, diceArray } ) => {
+const RollingButton = ( { setDiceState, clicked, diceArray, rollCount, setRollCount } ) => {
     
     const diceRollAction = () => {
         setDiceState({
@@ -10,12 +10,15 @@ const RollingButton = ( { setDiceState, clicked, diceArray } ) => {
             dieFour: (!clicked.four) ? Math.floor(Math.random() * (6 - 1 + 1)) + 1 : diceArray[3],
             dieFive: (!clicked.five) ? Math.floor(Math.random() * (6 - 1 + 1)) + 1 : diceArray[4],
         })
+        
+        rollCount--;
+        setRollCount(rollCount);
     }
     
     return (
         <div className="rolling-button">
-            <button className="roll-btn btn" onClick={diceRollAction}>Roll</button>
-            <h2 className="rolls-left">rolls left: <span>3</span></h2>
+            <button className="roll-btn btn" onClick={diceRollAction} disabled={(rollCount === 0) ? true : false}>Roll</button>
+            <h2 className="rolls-left">rolls left: <span>{rollCount}</span></h2>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import RollingButton from "./RollingButton";
 
-const GameSide = ( { setDiceState, diceArray, clicked, setClicked } ) => {
+const GameSide = ( { setDiceState, diceArray, clicked, setClicked, rollCount, setRollCount } ) => {
 
     const drawDice = (value) => {
         if (value === 1) {
@@ -132,7 +132,13 @@ const GameSide = ( { setDiceState, diceArray, clicked, setClicked } ) => {
                     <div className="one-dice-box" onClick={() => saveDice(5)} style={fiveStyles}>{drawDice(diceArray[4])}</div>
                 </div>
             </div>
-            <RollingButton setDiceState={setDiceState} clicked={clicked} diceArray={diceArray} />
+            <RollingButton
+                setDiceState={setDiceState}
+                clicked={clicked}
+                diceArray={diceArray}
+                rollCount={rollCount}
+                setRollCount={setRollCount} 
+            />
         </div>
     );
 }

@@ -35,7 +35,16 @@ img {
     border: none;
     border-radius: 5px;
     box-shadow: 2px 2px 2px gray;
-    cursor: pointer;    
+    cursor: pointer;
+}
+
+.btn:disabled {
+    background: gray;
+    color: black;
+}
+
+.btn:hover:disabled {
+    transform: scale(1);
 }
 
 .btn:hover {
