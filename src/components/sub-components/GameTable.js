@@ -13,8 +13,31 @@ const GameTable = ({
             fourScores,
             setFourScores,
             fiveScores,
-            setFiveScores
+            setFiveScores,
+            countPlayers,
+            setRollCount,
+            setDiceState,
+            setClicked,
         }) => {
+
+
+    const nextTurn = () => {
+        setRollCount(3);
+        setDiceState({
+            dieOne: 0,
+            dieTwo: 0,
+            dieThree: 0,
+            dieFour: 0,
+            dieFive: 0
+        });
+        setClicked({
+            one: false,
+            two: false,
+            three: false,
+            four: false,
+            five: false
+        });
+    }
 
 
     const acesCheck = (plNum) => {
@@ -45,8 +68,7 @@ const GameTable = ({
                 ...oneScores,
                 aces: sum,
                 acesSaved: true,
-                sum: sum + oneScores.twos + oneScores.threes + oneScores.fours + oneScores.fives + oneScores.sixes + oneScores.bonus,
-                total: oneScores.sum + oneScores.pair + oneScores.twoPairs + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
+                sum: sum + oneScores.twos + oneScores.threes + oneScores.fours + oneScores.fives + oneScores.sixes + oneScores.bonus
             })
         } else if (plNum === 2 && !twoScores.acesSaved) {
             setTwoScores({
@@ -77,6 +99,8 @@ const GameTable = ({
                 sum: sum + fiveScores.twos + fiveScores.threes + fiveScores.fours + fiveScores.fives + fiveScores.sixes + fiveScores.bonus
             })
         }
+
+        nextTurn();
     }
 
     const twosCheck = (plNum) => {
@@ -107,8 +131,7 @@ const GameTable = ({
                 ...oneScores,
                 twos: sum,
                 twosSaved: true,
-                sum: oneScores.aces + sum + oneScores.threes + oneScores.fours + oneScores.fives + oneScores.sixes + oneScores.bonus,
-                total: oneScores.sum + oneScores.pair + oneScores.twoPairs + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
+                sum: oneScores.aces + sum + oneScores.threes + oneScores.fours + oneScores.fives + oneScores.sixes + oneScores.bonus
             })
         } else if (plNum === 2 && !twoScores.twosSaved) {
             setTwoScores({
@@ -139,6 +162,8 @@ const GameTable = ({
                 sum: fiveScores.aces + sum + fiveScores.threes + fiveScores.fours + fiveScores.fives + fiveScores.sixes + fiveScores.bonus
             })
         }
+
+        nextTurn();
     }
 
     const threesCheck = (plNum) => {
@@ -169,8 +194,7 @@ const GameTable = ({
                 ...oneScores,
                 threes: sum,
                 threesSaved: true,
-                sum: oneScores.aces + oneScores.twos + sum + oneScores.fours + oneScores.fives + oneScores.sixes + oneScores.bonus,
-                total: oneScores.sum + oneScores.pair + oneScores.twoPairs + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
+                sum: oneScores.aces + oneScores.twos + sum + oneScores.fours + oneScores.fives + oneScores.sixes + oneScores.bonus
             })
         } else if (plNum === 2 && !twoScores.threesSaved) {
             setTwoScores({
@@ -201,6 +225,7 @@ const GameTable = ({
                 sum: fiveScores.aces + fiveScores.twos + sum + fiveScores.fours + fiveScores.fives + fiveScores.sixes + fiveScores.bonus
             })
         }
+        nextTurn();
     }
 
     const foursCheck = (plNum) => {
@@ -231,8 +256,7 @@ const GameTable = ({
                 ...oneScores,
                 fours: sum,
                 foursSaved: true,
-                sum: oneScores.aces + oneScores.twos + oneScores.threes + sum + oneScores.fives + oneScores.sixes + oneScores.bonus,
-                total: oneScores.sum + oneScores.pair + oneScores.twoPairs + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
+                sum: oneScores.aces + oneScores.twos + oneScores.threes + sum + oneScores.fives + oneScores.sixes + oneScores.bonus
             })
         } else if (plNum === 2 && !twoScores.foursSaved) {
             setTwoScores({
@@ -263,6 +287,7 @@ const GameTable = ({
                 sum: fiveScores.aces + fiveScores.twos + fiveScores.threes + sum + fiveScores.fives + fiveScores.sixes + fiveScores.bonus
             })
         }
+        nextTurn();
     }
 
     const fivesCheck = (plNum) => {
@@ -293,8 +318,7 @@ const GameTable = ({
                 ...oneScores,
                 fives: sum,
                 fivesSaved: true,
-                sum: oneScores.aces + oneScores.twos + oneScores.threes + oneScores.fours + sum + oneScores.sixes + oneScores.bonus,
-                total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
+                sum: oneScores.aces + oneScores.twos + oneScores.threes + oneScores.fours + sum + oneScores.sixes + oneScores.bonus
             })
         } else if (plNum === 2 && !twoScores.fivesSaved) {
             setTwoScores({
@@ -325,6 +349,7 @@ const GameTable = ({
                 sum: fiveScores.aces + fiveScores.twos + fiveScores.threes + fiveScores.fours + sum + fiveScores.sixes + fiveScores.bonus
             })
         }
+        nextTurn();
     }
 
     const sixesCheck = (plNum) => {
@@ -386,6 +411,7 @@ const GameTable = ({
                 sum: fiveScores.aces + fiveScores.twos + fiveScores.threes + fiveScores.fours + fiveScores.fives + sum + fiveScores.bonus
             })
         }
+        nextTurn();
     }
 
     const pairCheck = (plNum) => {
@@ -443,6 +469,7 @@ const GameTable = ({
                 total: fiveScores.sum + sum + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
             })
         }
+        nextTurn();
     }
 
     const twoPairCheck = (plNum) => {
@@ -502,6 +529,7 @@ const GameTable = ({
                 total: fiveScores.sum + fiveScores.pair + sum + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
             })
         }
+        nextTurn();
     }
 
     const threeOfKindCheck = (plNum) => {
@@ -561,6 +589,7 @@ const GameTable = ({
                 total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + sum + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
             })
         }
+        nextTurn();
     }
 
     const fourOfKindCheck = (plNum) => {
@@ -620,6 +649,7 @@ const GameTable = ({
                 total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + sum + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
             })
         }
+        nextTurn();
     }
 
     const largeStraightCheck = (plNum) => {
@@ -679,6 +709,7 @@ const GameTable = ({
                 total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + sum + fiveScores.full + fiveScores.chance
             })
         }
+        nextTurn();
     }
 
     const smallStraightCheck = (plNum) => {
@@ -738,6 +769,7 @@ const GameTable = ({
                 total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + sum + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
             })
         }
+        nextTurn();
     }
 
     const fullCheck = (plNum) => {
@@ -798,6 +830,7 @@ const GameTable = ({
                 total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + sum + fiveScores.chance
             })
         }
+        nextTurn();
     }
 
     const chanceCheck = (plNum) => {
@@ -855,6 +888,8 @@ const GameTable = ({
                 total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + sum
             })
         }
+
+        nextTurn();
     }
 
     const fiveOfKindCheck = (plNum) => {
@@ -879,40 +914,117 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.fiveOfKindSaved && sum !== 0) {
+        if (plNum === 1 && !oneScores.fiveOfKindSaved && sum > 0) {
             setOneScores({
                 ...oneScores,
                 fiveOfKind: sum + 50,
                 fiveOfKindSaved: true,
                 total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + sum + 50 + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2 && !twoScores.fiveOfKindSaved && sum !== 0) {
+        } else if (plNum === 2 && !twoScores.fiveOfKindSaved && sum > 0) {
             setTwoScores({
                 ...twoScores,
                 fiveOfKind: sum + 50,
                 fiveOfKindSaved: true,
                 total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + sum + 50 + twoScores.smallStraight + twoScores.largeStraight + twoScores.full + twoScores.chance
             })
-        } else if (plNum === 3 && !threeScores.fiveOfKindSaved && sum !== 0) {
+        } else if (plNum === 3 && !threeScores.fiveOfKindSaved && sum > 0) {
             setThreeScores({
                 ...threeScores,
                 fiveOfKind: sum + 50,
                 fiveOfKindSaved: true,
                 total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + sum + 50 + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + threeScores.chance
             })
-        } else if (plNum === 4 && !fourScores.fiveOfKindSaved && sum !== 0) {
+        } else if (plNum === 4 && !fourScores.fiveOfKindSaved && sum > 0) {
             setFourScores({
                 ...fourScores,
                 fiveOfKind: sum + 50,
                 fiveOfKindSaved: true,
                 total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + sum + 50 + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + fourScores.chance
             })
-        } else if (plNum === 5 && !fiveScores.fiveOfKindSaved && sum !== 0) {
+        } else if (plNum === 5 && !fiveScores.fiveOfKindSaved && sum > 0) {
             setFiveScores({
                 ...fiveScores,
                 fiveOfKind: sum + 50,
                 fiveOfKindSaved: true,
                 total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + sum + 50 + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
+            })
+        } else if (plNum === 1 && !oneScores.fiveOfKindSaved && sum === 0) {
+            setOneScores({
+                ...oneScores,
+                fiveOfKind: sum,
+                fiveOfKindSaved: true,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + sum + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
+            })
+        } else if (plNum === 2 && !twoScores.fiveOfKindSaved && sum === 0) {
+            setTwoScores({
+                ...twoScores,
+                fiveOfKind: sum,
+                fiveOfKindSaved: true,
+                total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + sum + twoScores.smallStraight + twoScores.largeStraight + twoScores.full + twoScores.chance
+            })
+        } else if (plNum === 3 && !threeScores.fiveOfKindSaved && sum === 0) {
+            setThreeScores({
+                ...threeScores,
+                fiveOfKind: sum,
+                fiveOfKindSaved: true,
+                total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + sum + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + threeScores.chance
+            })
+        } else if (plNum === 4 && !fourScores.fiveOfKindSaved && sum === 0) {
+            setFourScores({
+                ...fourScores,
+                fiveOfKind: sum,
+                fiveOfKindSaved: true,
+                total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + sum + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + fourScores.chance
+            })
+        } else if (plNum === 5 && !fiveScores.fiveOfKindSaved && sum === 0) {
+            setFiveScores({
+                ...fiveScores,
+                fiveOfKind: sum,
+                fiveOfKindSaved: true,
+                total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + sum + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
+            })
+        }
+
+        nextTurn();
+    }
+
+    const bonusCheck = (plNum) => {
+
+        if (plNum === 1 && !oneScores.bonusSaved && oneScores.sum >= 63) {
+            setOneScores({
+                ...oneScores,
+                bonus: 50,
+                bonusSaved: true,
+                sum: oneScores.sum + 50
+            })
+        } else if (plNum === 2 && !twoScores.bonusSaved && twoScores.sum >= 63) {
+            setTwoScores({
+                ...twoScores,
+                bonus: 50,
+                bonusSaved: true,
+                sum: twoScores.sum + 50
+            })
+        } else if (plNum === 3 && !threeScores.bonuseSaved && twoScores.sum >= 63) {
+            setThreeScores({
+                ...threeScores,
+                bonus: 50,
+                bonusSaved: true,
+                sum: threeScores.sum + 50
+            })
+        } else if (plNum === 4 && !fourScores.bonusSaved && twoScores.sum >= 63) {
+            setFourScores({
+                ...fourScores,
+                bonus: 50,
+                bonusSaved: true,
+                sum: fourScores.sum + 50
+            })
+        } else if (plNum === 5 && !fiveScores.bonusSaved && twoScores.sum >= 63) {
+            setFiveScores({
+                ...fiveScores,
+                bonus: 50,
+                bonusSaved: true,
+                sum: fiveScores.sum + 50
             })
         }
     }
@@ -941,7 +1053,7 @@ const GameTable = ({
                 <tbody>
                     <tr>
                         <td>I</td>
-                        <td onClick={() => acesCheck(1)}>{(oneScores.aces > 0) ? oneScores.aces : 0}</td>
+                        <td onClick={() => acesCheck(1)}>{oneScores.acesSaved ? oneScores.aces : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -949,7 +1061,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>II</td>
-                        <td onClick={() => twosCheck(1)}>{(oneScores.twos > 0) ? oneScores.twos : 0}</td>
+                        <td onClick={() => twosCheck(1)}>{oneScores.twosSaved ? oneScores.twos : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -957,7 +1069,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>III</td>
-                        <td onClick={() => threesCheck(1)}>{(oneScores.threes > 0) ? oneScores.threes : 0}</td>
+                        <td onClick={() => threesCheck(1)}>{oneScores.threesSaved ? oneScores.threes : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -965,7 +1077,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>IV</td>
-                        <td onClick={() => foursCheck(1)}>{(oneScores.fours > 0) ? oneScores.fours : 0}</td>
+                        <td onClick={() => foursCheck(1)}>{oneScores.foursSaved ? oneScores.fours : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -973,7 +1085,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>V</td>
-                        <td onClick={() => fivesCheck(1)}>{(oneScores.fives > 0) ? oneScores.fives : 0}</td>
+                        <td onClick={() => fivesCheck(1)}>{oneScores.fivesSaved ? oneScores.fives : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -981,7 +1093,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>VI</td>
-                        <td onClick={() => sixesCheck(1)}>{(oneScores.sixes > 0) ? oneScores.sixes : 0}</td>
+                        <td onClick={() => sixesCheck(1)}>{oneScores.sixesSaved ? oneScores.sixes : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -989,7 +1101,7 @@ const GameTable = ({
                     </tr>
                     <tr className="bonus-row">
                         <td>BONUS</td>
-                        <td>0</td>
+                        <td onClick={() => bonusCheck(1)}>{oneScores.bonusSaved ? oneScores.bonus : 0}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1005,7 +1117,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>Pair</td>
-                        <td onClick={() => pairCheck(1)}>{(oneScores.pair > 0) ? oneScores.pair : 0}</td>
+                        <td onClick={() => pairCheck(1)}>{oneScores.pairSaved ? oneScores.pair : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1013,7 +1125,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>2xPair</td>
-                        <td onClick={() => twoPairCheck(1)}>{(oneScores.twoPair > 0) ? oneScores.twoPair : 0}</td>
+                        <td onClick={() => twoPairCheck(1)}>{oneScores.twoPairSaved ? oneScores.twoPair : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1021,7 +1133,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>3X</td>
-                        <td onClick={() => threeOfKindCheck(1)}>{(oneScores.threeOfKind > 0) ? oneScores.threeOfKind : 0}</td>
+                        <td onClick={() => threeOfKindCheck(1)}>{oneScores.threeOfKindSaved ? oneScores.threeOfKind : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1029,7 +1141,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>4X</td>
-                        <td onClick={() => fourOfKindCheck(1)}>{(oneScores.fourOfKind > 0) ? oneScores.fourOfKind : 0}</td>
+                        <td onClick={() => fourOfKindCheck(1)}>{oneScores.fourOfKindSaved ? oneScores.fourOfKind : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1037,7 +1149,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>S straight</td>
-                        <td onClick={() => smallStraightCheck(1)}>{(oneScores.smallStraight > 0) ? oneScores.smallStraight : 0}</td>
+                        <td onClick={() => smallStraightCheck(1)}>{oneScores.smallStraightSaved ? oneScores.smallStraight : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1045,7 +1157,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>L straight</td>
-                        <td onClick={() => largeStraightCheck(1)}>{(oneScores.largeStraight > 0) ? oneScores.largeStraight : 0}</td>
+                        <td onClick={() => largeStraightCheck(1)}>{oneScores.largeStraightSaved ? oneScores.largeStraight : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1053,7 +1165,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>Full</td>
-                        <td onClick={() => fullCheck(1)}>{(oneScores.full > 0) ? oneScores.full : 0}</td>
+                        <td onClick={() => fullCheck(1)}>{oneScores.fullSaved ? oneScores.full : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1061,7 +1173,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>Chance</td>
-                        <td onClick={() => chanceCheck(1)}>{(oneScores.chance > 0) ? oneScores.chance : 0}</td>
+                        <td onClick={() => chanceCheck(1)}>{oneScores.chanceSaved ? oneScores.chance : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1069,7 +1181,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>5X</td>
-                        <td onClick={() => fiveOfKindCheck(1)}>{(oneScores.fiveOfKind > 0) ? oneScores.fiveOfKind : 0}</td>
+                        <td onClick={() => fiveOfKindCheck(1)}>{oneScores.fiveOfKindSaved ? oneScores.fiveOfKind : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>

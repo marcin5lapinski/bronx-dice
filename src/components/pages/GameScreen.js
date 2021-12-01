@@ -30,6 +30,7 @@ const GameScreen = ( { playersArray } ) => {
     const [threeScores, setThreeScores] = useState(playerThreeScores);
     const [fourScores, setFourScores] = useState(playerFourScores);
     const [fiveScores, setFiveScores] = useState(playerFiveScores);
+    const countPlayers = playersArray.length;
 
     console.log(diceArray);
     //console.log(playersArray);
@@ -50,6 +51,10 @@ const GameScreen = ( { playersArray } ) => {
                     setFourScores={setFourScores}
                     fiveScores={fiveScores}
                     setFiveScores={setFiveScores}
+                    countPlayers={countPlayers}
+                    setRollCount={setRollCount}
+                    setDiceState={setDiceState}
+                    setClicked={setClicked}
                 />
                 <GameSide 
                     setDiceState={setDiceState}
