@@ -15,6 +15,7 @@ const GameTable = ({
             fiveScores,
             setFiveScores,
             countPlayers,
+            rollCount,
             setRollCount,
             setDiceState,
             setClicked,
@@ -654,7 +655,47 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.pairSaved && oneScores.upperFilled) {
+        if (plNum === 1 && !oneScores.pairSaved && oneScores.upperFilled && rollCount === 2) {
+            setOneScores({
+                ...oneScores,
+                pair: sum * 2,
+                pairSaved: true,
+                total: oneScores.sum + sum * 2 + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.pairSaved && twoScores.upperFilled && rollCount === 2) {
+            setTwoScores({
+                ...twoScores,
+                pair: sum * 2,
+                pairSaved: true,
+                total: twoScores.sum + sum * 2 + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + twoScores.fiveOfKind + twoScores.smallStraight + twoScores.largeStraight + twoScores.full + twoScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.pairSaved && threeScores.upperFilled && rollCount === 2) {
+            setThreeScores({
+                ...threeScores,
+                pair: sum * 2,
+                pairSaved: true,
+                total: threeScores.sum + sum * 2 + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + threeScores.fiveOfKind + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + threeScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.pairSaved  && fourScores.upperFilled && rollCount === 2) {
+            setFourScores({
+                ...fourScores,
+                pair: sum * 2,
+                pairSaved: true,
+                total: fourScores.sum + sum * 2 + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + fourScores.fiveOfKind + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + fourScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.pairSaved  && fiveScores.upperFilled && rollCount === 2) {
+            setFiveScores({
+                ...fiveScores,
+                pair: sum * 2,
+                pairSaved: true,
+                total: fiveScores.sum + sum * 2 + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 1 && !oneScores.pairSaved && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 pair: sum,
@@ -718,7 +759,47 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.twoPairSaved && oneScores.upperFilled) {
+        if (plNum === 1 && !oneScores.twoPairSaved && oneScores.upperFilled && rollCount === 2) {
+            setOneScores({
+                ...oneScores,
+                twoPair: sum * 2,
+                twoPairSaved: true,
+                total: oneScores.sum + oneScores.pair + sum * 2 + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.twoPairSaved  && twoScores.upperFilled && rollCount === 2) {
+            setTwoScores({
+                ...twoScores,
+                twoPair: sum * 2,
+                twoPairSaved: true,
+                total: oneScores.sum + oneScores.pair + sum * 2 + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.twoPairSaved && threeScores.upperFilled && rollCount === 2) {
+            setThreeScores({
+                ...threeScores,
+                twoPair: sum * 2,
+                twoPairSaved: true,
+                total: threeScores.sum + threeScores.pair + sum * 2 + threeScores.threeOfKind + threeScores.fourOfKind + threeScores.fiveOfKind + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + threeScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.twoPairSaved && fourScores.upperFilled && rollCount === 2) {
+            setFourScores({
+                ...fourScores,
+                twoPair: sum * 2,
+                twoPairSaved: true,
+                total: fourScores.sum + fourScores.pair + sum * 2 + fourScores.threeOfKind + fourScores.fourOfKind + fourScores.fiveOfKind + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + fourScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.twoPairSaved  && fiveScores.upperFilled && rollCount === 2) {
+            setFiveScores({
+                ...fiveScores,
+                twoPair: sum * 2,
+                twoPairSaved: true,
+                total: fiveScores.sum + fiveScores.pair + sum * 2 + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 1 && !oneScores.twoPairSaved && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 twoPair: sum,
@@ -782,7 +863,47 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.threeOfKindSaved  && oneScores.upperFilled) {
+        if (plNum === 1 && !oneScores.threeOfKindSaved  && oneScores.upperFilled && rollCount === 2) {
+            setOneScores({
+                ...oneScores,
+                threeOfKind: sum * 2,
+                threeOfKindSaved: true,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPair + sum * 2 + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.threeOfKindSaved && twoScores.upperFilled && rollCount === 2) {
+            setTwoScores({
+                ...twoScores,
+                threeOfKind: sum * 2,
+                threeOfKindSaved: true,
+                total: twoScores.sum + twoScores.pair + twoScores.twoPair + sum * 2 + twoScores.fourOfKind + twoScores.fiveOfKind + twoScores.smallStraight + twoScores.largeStraight + twoScores.full + twoScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.threeOfKindSaved && threeScores.upperFilled && rollCount === 2) {
+            setThreeScores({
+                ...threeScores,
+                threeOfKind: sum * 2,
+                threeOfKindSaved: true,
+                total: threeScores.sum + threeScores.pair + threeScores.twoPair + sum * 2 + threeScores.fourOfKind + threeScores.fiveOfKind + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + threeScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.threeOfKindSaved  && fourScores.upperFilled && rollCount === 2) {
+            setFourScores({
+                ...fourScores,
+                threeOfKind: sum * 2,
+                threeOfKindSaved: true,
+                total: fourScores.sum + fourScores.pair + fourScores.twoPair + sum * 2 + fourScores.fourOfKind + fourScores.fiveOfKind + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + fourScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.threeOfKindSaved && fiveScores.upperFilled && rollCount === 2) {
+            setFiveScores({
+                ...fiveScores,
+                threeOfKind: sum * 2,
+                threeOfKindSaved: true,
+                total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + sum * 2 + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 1 && !oneScores.threeOfKindSaved  && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 threeOfKind: sum,
@@ -846,7 +967,47 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.fourOfKindSaved && oneScores.upperFilled) {
+        if (plNum === 1 && !oneScores.fourOfKindSaved && oneScores.upperFilled && rollCount === 2) {
+            setOneScores({
+                ...oneScores,
+                fourOfKind: sum * 2,
+                fourOfKindSaved: true,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + sum * 2 + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.fourOfKindSaved && twoScores.upperFilled && rollCount === 2) {
+            setTwoScores({
+                ...twoScores,
+                fourOfKind: sum * 2,
+                fourOfKindSaved: true,
+                total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + sum * 2 + twoScores.fiveOfKind + twoScores.smallStraight + twoScores.largeStraight + twoScores.full + twoScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.fourOfKindSaved && threeScores.upperFilled && rollCount === 2) {
+            setThreeScores({
+                ...threeScores,
+                fourOfKind: sum * 2,
+                fourOfKindSaved: true,
+                total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + sum * 2 + threeScores.fiveOfKind + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + threeScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.fourOfKindSaved && fourScores.upperFilled && rollCount === 2) {
+            setFourScores({
+                ...fourScores,
+                fourOfKind: sum * 2,
+                fourOfKindSaved: true,
+                total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + sum * 2 + fourScores.fiveOfKind + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + fourScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.fourOfKindSaved && fiveScores.upperFilled && rollCount === 2) {
+            setFiveScores({
+                ...fiveScores,
+                fourOfKind: sum * 2,
+                fourOfKindSaved: true,
+                total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + sum * 2 + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 1 && !oneScores.fourOfKindSaved && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 fourOfKind: sum,
@@ -910,7 +1071,47 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.largeStraightSaved  && oneScores.upperFilled) {
+        if (plNum === 1 && !oneScores.largeStraightSaved  && oneScores.upperFilled && rollCount === 2) {
+            setOneScores({
+                ...oneScores,
+                largeStraight: sum * 2,
+                largeStraightSaved: true,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + sum * 2 + oneScores.full + oneScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.largeStraightSaved && twoScores.upperFilled && rollCount === 2) {
+            setTwoScores({
+                ...twoScores,
+                largeStraight: sum * 2,
+                largeStraightSaved: true,
+                total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + twoScores.fiveOfKind + twoScores.smallStraight + sum * 2 + twoScores.full + twoScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.largeStraightSaved && threeScores.upperFilled && rollCount === 2) {
+            setThreeScores({
+                ...threeScores,
+                largeStraight: sum * 2,
+                largeStraightSaved: true,
+                total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + threeScores.fiveOfKind + threeScores.smallStraight + sum * 2 + threeScores.full + threeScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.largeStraightSaved && fourScores.upperFilled && rollCount === 2) {
+            setFourScores({
+                ...fourScores,
+                largeStraight: sum * 2,
+                largeStraightSaved: true,
+                total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + fourScores.fiveOfKind + fourScores.smallStraight + sum * 2 + fourScores.full + fourScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.largeStraightSaved && fiveScores.upperFilled && rollCount === 2) {
+            setFiveScores({
+                ...fiveScores,
+                largeStraight: sum * 2,
+                largeStraightSaved: true,
+                total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + sum * 2 + fiveScores.full + fiveScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 1 && !oneScores.largeStraightSaved  && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 largeStraight: sum,
@@ -974,7 +1175,47 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.smallStraightSaved && oneScores.upperFilled) {
+        if (plNum === 1 && !oneScores.smallStraightSaved && oneScores.upperFilled && rollCount === 2) {
+            setOneScores({
+                ...oneScores,
+                smallStraight: sum * 2,
+                smallStraightSaved: true,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + sum * 2 + oneScores.largeStraight + oneScores.full + oneScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.smallStraightSaved && twoScores.upperFilled && rollCount === 2) {
+            setTwoScores({
+                ...twoScores,
+                smallStraight: sum * 2,
+                smallStraightSaved: true,
+                total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + twoScores.fiveOfKind + sum * 2 + twoScores.largeStraight + twoScores.full + twoScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.smallStraightSaved && threeScores.upperFilled && rollCount === 2) {
+            setThreeScores({
+                ...threeScores,
+                smallStraight: sum * 2,
+                smallStraightSaved: true,
+                total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + threeScores.fiveOfKind + sum * 2 + threeScores.largeStraight + threeScores.full + threeScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.smallStraightSaved && fourScores.upperFilled && rollCount === 2) {
+            setFourScores({
+                ...fourScores,
+                smallStraight: sum * 2,
+                smallStraightSaved: true,
+                total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + fourScores.fiveOfKind + sum * 2 + fourScores.largeStraight + fourScores.full + fourScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.smallStraightSaved && fiveScores.upperFilled && rollCount === 2) {
+            setFiveScores({
+                ...fiveScores,
+                smallStraight: sum * 2,
+                smallStraightSaved: true,
+                total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + sum * 2 + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 1 && !oneScores.smallStraightSaved && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 smallStraight: sum,
@@ -1039,7 +1280,47 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.fullSaved  && oneScores.upperFilled) {
+        if (plNum === 1 && !oneScores.fullSaved  && oneScores.upperFilled && rollCount === 2) {
+            setOneScores({
+                ...oneScores,
+                full: sum * 2,
+                fullSaved: true,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + sum * 2 + oneScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.fullSaved && twoScores.upperFilled && rollCount === 2) {
+            setTwoScores({
+                ...twoScores,
+                full: sum * 2,
+                fullSaved: true,
+                total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + twoScores.fiveOfKind + twoScores.smallStraight + twoScores.largeStraight + sum * 2 + twoScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.fullSaved && threeScores.upperFilled && rollCount === 2) {
+            setThreeScores({
+                ...threeScores,
+                full: sum * 2,
+                fullSaved: true,
+                total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + threeScores.fiveOfKind + threeScores.smallStraight + threeScores.largeStraight + sum * 2 + threeScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.fullSaved && fourScores.upperFilled && rollCount === 2) {
+            setFourScores({
+                ...fourScores,
+                full: sum * 2,
+                fullSaved: true,
+                total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + fourScores.fiveOfKind + fourScores.smallStraight + fourScores.largeStraight + sum * 2 + fourScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.fullSaved && fiveScores.upperFilled && rollCount === 2) {
+            setFiveScores({
+                ...fiveScores,
+                full: sum * 2,
+                fullSaved: true,
+                total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + sum * 2 + fiveScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 1 && !oneScores.fullSaved  && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 full: sum,
@@ -1101,7 +1382,47 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.chanceSaved && oneScores.upperFilled) {
+        if (plNum === 1 && !oneScores.chanceSaved && oneScores.upperFilled && rollCount === 2) {
+            setOneScores({
+                ...oneScores,
+                chance: sum * 2,
+                chanceSaved: true,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + sum * 2
+            })
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.chanceSaved && twoScores.upperFilled && rollCount === 2) {
+            setTwoScores({
+                ...twoScores,
+                chance: sum * 2,
+                chanceSaved: true,
+                total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + twoScores.fiveOfKind + twoScores.smallStraight + twoScores.largeStraight + twoScores.full + sum * 2
+            })
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.chanceSaved && threeScores.upperFilled && rollCount === 2) {
+            setThreeScores({
+                ...threeScores,
+                chance: sum * 2,
+                chanceSaved: true,
+                total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + threeScores.fiveOfKind + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + sum * 2
+            })
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.chanceSaved && fourScores.upperFilled && rollCount === 2) {
+            setFourScores({
+                ...fourScores,
+                chance: sum * 2,
+                chanceSaved: true,
+                total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + fourScores.fiveOfKind + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + sum * 2
+            })
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.chanceSaved && fiveScores.upperFilled && rollCount === 2) {
+            setFiveScores({
+                ...fiveScores,
+                chance: sum * 2,
+                chanceSaved: true,
+                total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + sum * 2
+            })
+            nextTurn();
+        } else if (plNum === 1 && !oneScores.chanceSaved && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 chance: sum,
@@ -1166,7 +1487,47 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.fiveOfKindSaved && sum > 0 && oneScores.upperFilled) {
+        if (plNum === 1 && !oneScores.fiveOfKindSaved && sum > 0 && oneScores.upperFilled && rollCount === 2) {
+            setOneScores({
+                ...oneScores,
+                fiveOfKind: sum * 2 + 50,
+                fiveOfKindSaved: true,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + sum * 2 + 50 + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.fiveOfKindSaved && sum > 0 && twoScores.upperFilled && rollCount === 2) {
+            setTwoScores({
+                ...twoScores,
+                fiveOfKind: sum * 2 + 50,
+                fiveOfKindSaved: true,
+                total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + sum * 2 + 50 + twoScores.smallStraight + twoScores.largeStraight + twoScores.full + twoScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.fiveOfKindSaved && sum > 0 && threeScores.upperFilled && rollCount === 2) {
+            setThreeScores({
+                ...threeScores,
+                fiveOfKind: sum * 2 + 50,
+                fiveOfKindSaved: true,
+                total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + sum * 2 + 50 + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + threeScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.fiveOfKindSaved && sum > 0 && fourScores.upperFilled && rollCount === 2) {
+            setFourScores({
+                ...fourScores,
+                fiveOfKind: sum * 2 + 50,
+                fiveOfKindSaved: true,
+                total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + sum * 2 + 50 + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + fourScores.chance
+            })
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.fiveOfKindSaved && sum > 0 && fiveScores.upperFilled && rollCount === 2) {
+            setFiveScores({
+                ...fiveScores,
+                fiveOfKind: sum * 2 + 50,
+                fiveOfKindSaved: true,
+                total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + sum * 2 + 50 + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
+            })
+            nextTurn();
+        }else if (plNum === 1 && !oneScores.fiveOfKindSaved && sum > 0 && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 fiveOfKind: sum + 50,

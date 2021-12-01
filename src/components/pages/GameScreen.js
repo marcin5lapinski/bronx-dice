@@ -53,6 +53,7 @@ const GameScreen = ( { playersArray } ) => {
                     fiveScores={fiveScores}
                     setFiveScores={setFiveScores}
                     countPlayers={countPlayers}
+                    rollCount={rollCount}
                     setRollCount={setRollCount}
                     setDiceState={setDiceState}
                     setClicked={setClicked}
