@@ -23,45 +23,58 @@ const GameTable = ({
             return (el === 1);
         }
         
-        const ones = diceArray.filter(isOne);
-        console.log(ones);
+        const aces = diceArray.filter(isOne);
+        console.log(aces);
     
         let sum;
     
         const score = () => {
-            if (ones === []) {
+            if (aces === []) {
                 return sum = 0;
-            } else if (ones.length >= 1) {
-                return sum = ones.reduce((acc, curr) => acc + curr);
+            } else if (aces.length >= 1) {
+                return sum = aces.reduce((acc, curr) => acc + curr);
+            } else if (typeof sum === "undefined") {
+                return sum = 0;
             }
         }
     
         score();
     
-        if (plNum === 1) {
+        if (plNum === 1 && !oneScores.acesSaved) {
             setOneScores({
                 ...oneScores,
-                aces: sum
+                aces: sum,
+                acesSaved: true,
+                sum: sum + oneScores.twos + oneScores.threes + oneScores.fours + oneScores.fives + oneScores.sixes + oneScores.bonus,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPairs + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2) {
+        } else if (plNum === 2 && !twoScores.acesSaved) {
             setTwoScores({
                 ...twoScores,
-                aces: sum
+                aces: sum,
+                acesSaved: true,
+                sum: sum + twoScores.twos + twoScores.threes + twoScores.fours + twoScores.fives + twoScores.sixes + twoScores.bonus
             })
-        } else if (plNum === 3) {
+        } else if (plNum === 3 && !threeScores.acesSaved) {
             setThreeScores({
                 ...threeScores,
-                aces: sum
+                aces: sum,
+                acesSaved: true,
+                sum: sum + threeScores.twos + threeScores.threes + threeScores.fours + threeScores.fives + threeScores.sixes + threeScores.bonus
             })
-        } else if (plNum === 4) {
+        } else if (plNum === 4 && !fourScores.acesSaved) {
             setFourScores({
                 ...fourScores,
-                aces: sum
+                aces: sum,
+                acesSaved: true,
+                sum: sum + fourScores.twos + fourScores.threes + fourScores.fours + fourScores.fives + fourScores.sixes + fourScores.bonus
             })
-        } else if (plNum === 5) {
+        } else if (plNum === 5 && !fiveScores.acesSaved) {
             setFiveScores({
                 ...fiveScores,
-                aces: sum
+                aces: sum,
+                acesSaved: true,
+                sum: sum + fiveScores.twos + fiveScores.threes + fiveScores.fours + fiveScores.fives + fiveScores.sixes + fiveScores.bonus
             })
         }
     }
@@ -82,35 +95,48 @@ const GameTable = ({
                 return sum = 0;
             } else if (twos.length >= 1) {
                 return sum = twos.reduce((acc, curr) => acc + curr);
+            } else if (typeof sum === "undefined") {
+                return sum = 0;
             }
         }
     
         score();
     
-        if (plNum === 1) {
+        if (plNum === 1 && !oneScores.twosSaved) {
             setOneScores({
                 ...oneScores,
-                twos: sum
+                twos: sum,
+                twosSaved: true,
+                sum: oneScores.aces + sum + oneScores.threes + oneScores.fours + oneScores.fives + oneScores.sixes + oneScores.bonus,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPairs + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2) {
+        } else if (plNum === 2 && !twoScores.twosSaved) {
             setTwoScores({
                 ...twoScores,
-                twos: sum
+                twos: sum,
+                twosSaved: true,
+                sum: twoScores.aces + sum + twoScores.threes + twoScores.fours + twoScores.fives + twoScores.sixes + twoScores.bonus
             })
-        } else if (plNum === 3) {
+        } else if (plNum === 3 && !threeScores.twosSaved) {
             setThreeScores({
                 ...threeScores,
-                twos: sum
+                twos: sum,
+                twosSaved: true,
+                sum: threeScores.aces + sum + threeScores.threes + threeScores.fours + threeScores.fives + threeScores.sixes + threeScores.bonus
             })
-        } else if (plNum === 4) {
+        } else if (plNum === 4 && !fourScores.twosSaved) {
             setFourScores({
                 ...fourScores,
-                twos: sum
+                twos: sum,
+                twosSaved: true,
+                sum: fourScores.aces + sum + fourScores.threes + fourScores.fours + fourScores.fives + fourScores.sixes + fourScores.bonus
             })
-        } else if (plNum === 5) {
+        } else if (plNum === 5 && !fiveScores.twosSaved) {
             setFiveScores({
                 ...fiveScores,
-                twos: sum
+                twos: sum,
+                twosSaved: true,
+                sum: fiveScores.aces + sum + fiveScores.threes + fiveScores.fours + fiveScores.fives + fiveScores.sixes + fiveScores.bonus
             })
         }
     }
@@ -131,35 +157,48 @@ const GameTable = ({
                 return sum = 0;
             } else if (threes.length >= 1) {
                 return sum = threes.reduce((acc, curr) => acc + curr);
+            } else if (typeof sum === "undefined") {
+                return sum = 0;
             }
         }
     
         score();
     
-        if (plNum === 1) {
+        if (plNum === 1 && !oneScores.threesSaved) {
             setOneScores({
                 ...oneScores,
-                threes: sum
+                threes: sum,
+                threesSaved: true,
+                sum: oneScores.aces + oneScores.twos + sum + oneScores.fours + oneScores.fives + oneScores.sixes + oneScores.bonus,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPairs + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2) {
+        } else if (plNum === 2 && !twoScores.threesSaved) {
             setTwoScores({
                 ...twoScores,
-                threes: sum
+                threes: sum,
+                threesSaved: true,
+                sum: twoScores.aces + twoScores.twos + sum + twoScores.fours + twoScores.fives + twoScores.sixes + twoScores.bonus
             })
-        } else if (plNum === 3) {
+        } else if (plNum === 3 && !threeScores.threesSaved) {
             setThreeScores({
                 ...threeScores,
-                threes: sum
+                threes: sum,
+                threesSaved: true,
+                sum: threeScores.aces + threeScores.twos + sum + threeScores.fours + threeScores.fives + threeScores.sixes + threeScores.bonus
             })
-        } else if (plNum === 4) {
+        } else if (plNum === 4 && !fourScores.threesSaved) {
             setFourScores({
                 ...fourScores,
-                threes: sum
+                threes: sum,
+                threesSaved: true,
+                sum: fourScores.aces + fourScores.twos + sum + fourScores.fours + fourScores.fives + fourScores.sixes + fourScores.bonus
             })
-        } else if (plNum === 5) {
+        } else if (plNum === 5 && !fiveScores.threesSaved) {
             setFiveScores({
                 ...fiveScores,
-                threes: sum
+                threes: sum,
+                threesSaved: true,
+                sum: fiveScores.aces + fiveScores.twos + sum + fiveScores.fours + fiveScores.fives + fiveScores.sixes + fiveScores.bonus
             })
         }
     }
@@ -180,35 +219,48 @@ const GameTable = ({
                 return sum = 0;
             } else if (fours.length >= 1) {
                 return sum = fours.reduce((acc, curr) => acc + curr);
+            } else if (typeof sum === "undefined") {
+                return sum = 0;
             }
         }
     
         score();
     
-        if (plNum === 1) {
+        if (plNum === 1 && !oneScores.foursSaved) {
             setOneScores({
                 ...oneScores,
-                fours: sum
+                fours: sum,
+                foursSaved: true,
+                sum: oneScores.aces + oneScores.twos + oneScores.threes + sum + oneScores.fives + oneScores.sixes + oneScores.bonus,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPairs + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2) {
+        } else if (plNum === 2 && !twoScores.foursSaved) {
             setTwoScores({
                 ...twoScores,
-                fours: sum
+                fours: sum,
+                foursSaved: true,
+                sum: twoScores.aces + twoScores.twos + twoScores.threes + sum + twoScores.fives + twoScores.sixes + twoScores.bonus
             })
-        } else if (plNum === 3) {
+        } else if (plNum === 3 && !threeScores.foursSaved) {
             setThreeScores({
                 ...threeScores,
-                fours: sum
+                fours: sum,
+                foursSaved: true,
+                sum: threeScores.aces + threeScores.twos + threeScores.threes + sum + threeScores.fives + threeScores.sixes + threeScores.bonus
             })
-        } else if (plNum === 4) {
+        } else if (plNum === 4 && !fourScores.foursSaved) {
             setFourScores({
                 ...fourScores,
-                fours: sum
+                fours: sum,
+                foursSaved: true,
+                sum: fourScores.aces + fourScores.twos + fourScores.threes + sum + fourScores.fives + fourScores.sixes + fourScores.bonus
             })
-        } else if (plNum === 5) {
+        } else if (plNum === 5 && !fiveScores.foursSaved) {
             setFiveScores({
                 ...fiveScores,
-                fours: sum
+                fours: sum,
+                foursSaved: true,
+                sum: fiveScores.aces + fiveScores.twos + fiveScores.threes + sum + fiveScores.fives + fiveScores.sixes + fiveScores.bonus
             })
         }
     }
@@ -229,35 +281,48 @@ const GameTable = ({
                 return sum = 0;
             } else if (fives.length >= 1) {
                 return sum = fives.reduce((acc, curr) => acc + curr);
+            } else if (typeof sum === "undefined") {
+                return sum = 0;
             }
         }
     
         score();
     
-        if (plNum === 1) {
+        if (plNum === 1 && !oneScores.fivesSaved) {
             setOneScores({
                 ...oneScores,
-                fives: sum
+                fives: sum,
+                fivesSaved: true,
+                sum: oneScores.aces + oneScores.twos + oneScores.threes + oneScores.fours + sum + oneScores.sixes + oneScores.bonus,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2) {
+        } else if (plNum === 2 && !twoScores.fivesSaved) {
             setTwoScores({
                 ...twoScores,
-                fives: sum
+                fives: sum,
+                fivesSaved: true,
+                sum: twoScores.aces + twoScores.twos + twoScores.threes + twoScores.fours + sum + twoScores.sixes + twoScores.bonus
             })
-        } else if (plNum === 3) {
+        } else if (plNum === 3 && !threeScores.fivesSaved) {
             setThreeScores({
                 ...threeScores,
-                fives: sum
+                fives: sum,
+                fivesSaved: true,
+                sum: threeScores.aces + threeScores.twos + threeScores.threes + threeScores.fours + sum + threeScores.sixes + threeScores.bonus
             })
-        } else if (plNum === 4) {
+        } else if (plNum === 4 && !fourScores.fivesSaved) {
             setFourScores({
                 ...fourScores,
-                fives: sum
+                fives: sum,
+                fivesSaved: true,
+                sum: fourScores.aces + fourScores.twos + fourScores.threes + fourScores.fours + sum + fourScores.sixes + fourScores.bonus
             })
-        } else if (plNum === 5) {
+        } else if (plNum === 5 && !fiveScores.fivesSaved) {
             setFiveScores({
                 ...fiveScores,
-                fives: sum
+                fives: sum,
+                fivesSaved: true,
+                sum: fiveScores.aces + fiveScores.twos + fiveScores.threes + fiveScores.fours + sum + fiveScores.sixes + fiveScores.bonus
             })
         }
     }
@@ -278,35 +343,47 @@ const GameTable = ({
                 return sum = 0;
             } else if (sixes.length >= 1) {
                 return sum = sixes.reduce((acc, curr) => acc + curr);
+            } else if (typeof sum === "undefined") {
+                return sum = 0;
             }
         }
     
         score();
     
-        if (plNum === 1) {
+        if (plNum === 1 && !oneScores.sixesSaved) {
             setOneScores({
                 ...oneScores,
-                sixes: sum
+                sixes: sum,
+                sixesSaved: true,
+                sum: oneScores.aces + oneScores.twos + oneScores.threes + oneScores.fours + oneScores.fives + sum + oneScores.bonus
             })
-        } else if (plNum === 2) {
+        } else if (plNum === 2 && !twoScores.sixesSaved) {
             setTwoScores({
                 ...twoScores,
-                sixes: sum
+                sixes: sum,
+                sixesSaved: true,
+                sum: twoScores.aces + twoScores.twos + twoScores.threes + twoScores.fours + twoScores.fives + sum + twoScores.bonus
             })
-        } else if (plNum === 3) {
+        } else if (plNum === 3 && !threeScores.sixesSaved) {
             setThreeScores({
                 ...threeScores,
-                sixes: sum
+                sixes: sum,
+                sixesSaved: true,
+                sum: threeScores.aces + threeScores.twos + threeScores.threes + threeScores.fours + threeScores.fives + sum + threeScores.bonus
             })
-        } else if (plNum === 4) {
+        } else if (plNum === 4 && !fourScores.sixesSaved) {
             setFourScores({
                 ...fourScores,
-                sixes: sum
+                sixes: sum,
+                sixesSaved: true,
+                sum: fourScores.aces + fourScores.twos + fourScores.threes + fourScores.fours + fourScores.fives + sum + fourScores.bonus
             })
-        } else if (plNum === 5) {
+        } else if (plNum === 5 && !fiveScores.sixesSaved) {
             setFiveScores({
                 ...fiveScores,
-                sixes: sum
+                sixes: sum,
+                sixesSaved: true,
+                sum: fiveScores.aces + fiveScores.twos + fiveScores.threes + fiveScores.fours + fiveScores.fives + sum + fiveScores.bonus
             })
         }
     }
@@ -323,37 +400,47 @@ const GameTable = ({
                 return sum = 0;
             } else if (pair.length >= 1 && pair.length < 3) {
                 return sum = pair.reduce((acc, curr) => acc + curr);
-            } else if (pair.length <= 3) {
+            } else if (typeof sum === "undefined") {
                 return sum = 0;
             }
         }
     
         score();
     
-        if (plNum === 1) {
+        if (plNum === 1 && !oneScores.pairSaved) {
             setOneScores({
                 ...oneScores,
-                pair: sum
+                pair: sum,
+                pairSaved: true,
+                total: oneScores.sum + sum + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2) {
+        } else if (plNum === 2 && !twoScores.pairSaved) {
             setTwoScores({
                 ...twoScores,
-                pair: sum
+                pair: sum,
+                pairSaved: true,
+                total: twoScores.sum + sum + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + twoScores.fiveOfKind + twoScores.smallStraight + twoScores.largeStraight + twoScores.full + twoScores.chance
             })
-        } else if (plNum === 3) {
+        } else if (plNum === 3 && !threeScores.pairSaved) {
             setThreeScores({
                 ...threeScores,
-                pair: sum
+                pair: sum,
+                pairSaved: true,
+                total: threeScores.sum + sum + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + threeScores.fiveOfKind + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + threeScores.chance
             })
-        } else if (plNum === 4) {
+        } else if (plNum === 4 && !fourScores.pairSaved) {
             setFourScores({
                 ...fourScores,
-                pair: sum
+                pair: sum,
+                pairSaved: true,
+                total: fourScores.sum + sum + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + fourScores.fiveOfKind + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + fourScores.chance
             })
-        } else if (plNum === 5) {
+        } else if (plNum === 5 && !fiveScores.pairSaved) {
             setFiveScores({
                 ...fiveScores,
-                pair: sum
+                pair: sum,
+                pairSaved: true,
+                total: fiveScores.sum + sum + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
             })
         }
     }
@@ -372,35 +459,47 @@ const GameTable = ({
                 return sum = twoPair.reduce((acc, curr) => acc + curr);
             } else if (twoPair.length !== 4) {
                 return sum = 0;
+            } else if (typeof sum === "undefined") {
+                return sum = 0;
             }
         }
     
         score();
     
-        if (plNum === 1) {
+        if (plNum === 1 && !oneScores.twoPairSaved) {
             setOneScores({
                 ...oneScores,
-                twoPair: sum
+                twoPair: sum,
+                twoPairSaved: true,
+                total: oneScores.sum + oneScores.pair + sum + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2) {
+        } else if (plNum === 2 && !twoScores.twoPairSaved) {
             setTwoScores({
                 ...twoScores,
-                twoPair: sum
+                twoPair: sum,
+                twoPairSaved: true,
+                total: oneScores.sum + oneScores.pair + sum + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 3) {
+        } else if (plNum === 3 && !threeScores.twoPairSaved) {
             setThreeScores({
                 ...threeScores,
-                twoPair: sum
+                twoPair: sum,
+                twoPairSaved: true,
+                total: threeScores.sum + threeScores.pair + sum + threeScores.threeOfKind + threeScores.fourOfKind + threeScores.fiveOfKind + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + threeScores.chance
             })
-        } else if (plNum === 4) {
+        } else if (plNum === 4 && !fourScores.twoPairSaved) {
             setFourScores({
                 ...fourScores,
-                twoPair: sum
+                twoPair: sum,
+                twoPairSaved: true,
+                total: fourScores.sum + fourScores.pair + sum + fourScores.threeOfKind + fourScores.fourOfKind + fourScores.fiveOfKind + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + fourScores.chance
             })
-        } else if (plNum === 5) {
+        } else if (plNum === 5 && !fiveScores.twoPairSaved) {
             setFiveScores({
                 ...fiveScores,
-                twoPair: sum
+                twoPair: sum,
+                twoPairSaved: true,
+                total: fiveScores.sum + fiveScores.pair + sum + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
             })
         }
     }
@@ -419,35 +518,47 @@ const GameTable = ({
                 return sum = threeOfKind.reduce((acc, curr) => acc + curr);
             } else if (threeOfKind.length !== 3) {
                 return sum = 0;
+            } else if (typeof sum === "undefined") {
+                return sum = 0;
             }
         }
     
         score();
     
-        if (plNum === 1) {
+        if (plNum === 1 && !oneScores.threeOfKindSaved) {
             setOneScores({
                 ...oneScores,
-                threeOfKind: sum
+                threeOfKind: sum,
+                threeOfKindSaved: true,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPair + sum + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2) {
+        } else if (plNum === 2 && !twoScores.threeOfKindSaved) {
             setTwoScores({
                 ...twoScores,
-                threeOfKind: sum
+                threeOfKind: sum,
+                threeOfKindSaved: true,
+                total: twoScores.sum + twoScores.pair + twoScores.twoPair + sum + twoScores.fourOfKind + twoScores.fiveOfKind + twoScores.smallStraight + twoScores.largeStraight + twoScores.full + twoScores.chance
             })
-        } else if (plNum === 3) {
+        } else if (plNum === 3 && !threeScores.threeOfKindSaved) {
             setThreeScores({
                 ...threeScores,
-                threeOfKind: sum
+                threeOfKind: sum,
+                threeOfKindSaved: true,
+                total: threeScores.sum + threeScores.pair + threeScores.twoPair + sum + threeScores.fourOfKind + threeScores.fiveOfKind + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + threeScores.chance
             })
-        } else if (plNum === 4) {
+        } else if (plNum === 4 && !fourScores.threeOfKindSaved) {
             setFourScores({
                 ...fourScores,
-                threeOfKind: sum
+                threeOfKind: sum,
+                threeOfKindSaved: true,
+                total: fourScores.sum + fourScores.pair + fourScores.twoPair + sum + fourScores.fourOfKind + fourScores.fiveOfKind + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + fourScores.chance
             })
-        } else if (plNum === 5) {
+        } else if (plNum === 5 && !fiveScores.threeOfKindSaved) {
             setFiveScores({
                 ...fiveScores,
-                threeOfKind: sum
+                threeOfKind: sum,
+                threeOfKindSaved: true,
+                total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + sum + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
             })
         }
     }
@@ -466,35 +577,47 @@ const GameTable = ({
                 return sum = fourOfKind.reduce((acc, curr) => acc + curr);
             } else if (fourOfKind.length !== 4) {
                 return sum = 0;
+            } else if (typeof sum === "undefined") {
+                return sum = 0;
             }
         }
     
         score();
     
-        if (plNum === 1) {
+        if (plNum === 1 && !oneScores.fourOfKindSaved) {
             setOneScores({
                 ...oneScores,
-                fourOfKind: sum
+                fourOfKind: sum,
+                fourOfKindSaved: true,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + sum + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2) {
+        } else if (plNum === 2 && !twoScores.fourOfKindSaved) {
             setTwoScores({
                 ...twoScores,
-                fourOfKind: sum
+                fourOfKind: sum,
+                fourOfKindSaved: true,
+                total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + sum + twoScores.fiveOfKind + twoScores.smallStraight + twoScores.largeStraight + twoScores.full + twoScores.chance
             })
-        } else if (plNum === 3) {
+        } else if (plNum === 3 && !threeScores.fourOfKindSaved) {
             setThreeScores({
                 ...threeScores,
-                fourOfKind: sum
+                fourOfKind: sum,
+                fourOfKindSaved: true,
+                total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + sum + threeScores.fiveOfKind + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + threeScores.chance
             })
-        } else if (plNum === 4) {
+        } else if (plNum === 4 && !fourScores.fourOfKindSaved) {
             setFourScores({
                 ...fourScores,
-                fourOfKind: sum
+                fourOfKind: sum,
+                fourOfKindSaved: true,
+                total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + sum + fourScores.fiveOfKind + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + fourScores.chance
             })
-        } else if (plNum === 5) {
+        } else if (plNum === 5 && !fiveScores.fourOfKindSaved) {
             setFiveScores({
                 ...fiveScores,
-                fourOfKind: sum
+                fourOfKind: sum,
+                fourOfKindSaved: true,
+                total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + sum + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
             })
         }
     }
@@ -513,35 +636,47 @@ const GameTable = ({
                 return sum = largeStraight.reduce((acc, curr) => acc + curr);
             } else if (largeStraight.includes(1)) {
                 return sum = 0;
+            } else if (typeof sum === "undefined") {
+                return sum = 0;
             }
         }
     
         score();
     
-        if (plNum === 1) {
+        if (plNum === 1 && !oneScores.largeStraightSaved) {
             setOneScores({
                 ...oneScores,
-                largeStraight: sum
+                largeStraight: sum,
+                largeStraightSaved: true,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + sum + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2) {
+        } else if (plNum === 2 && !twoScores.largeStraightSaved) {
             setTwoScores({
                 ...twoScores,
-                largeStraight: sum
+                largeStraight: sum,
+                largeStraightSaved: true,
+                total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + twoScores.fiveOfKind + twoScores.smallStraight + sum + twoScores.full + twoScores.chance
             })
-        } else if (plNum === 3) {
+        } else if (plNum === 3 && !threeScores.largeStraightSaved) {
             setThreeScores({
                 ...threeScores,
-                largeStraight: sum
+                largeStraight: sum,
+                largeStraightSaved: true,
+                total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + threeScores.fiveOfKind + threeScores.smallStraight + sum + threeScores.full + threeScores.chance
             })
-        } else if (plNum === 4) {
+        } else if (plNum === 4 && !fourScores.largeStraightSaved) {
             setFourScores({
                 ...fourScores,
-                largeStraight: sum
+                largeStraight: sum,
+                largeStraightSaved: true,
+                total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + fourScores.fiveOfKind + fourScores.smallStraight + sum + fourScores.full + fourScores.chance
             })
-        } else if (plNum === 5) {
+        } else if (plNum === 5 && !fiveScores.largeStraightSaved) {
             setFiveScores({
                 ...fiveScores,
-                largeStraight: sum
+                largeStraight: sum,
+                largeStraightSaved: true,
+                total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + sum + fiveScores.full + fiveScores.chance
             })
         }
     }
@@ -560,35 +695,47 @@ const GameTable = ({
                 return sum = smallStraight.reduce((acc, curr) => acc + curr);
             } else if (smallStraight.includes(6)) {
                 return sum = 0;
+            } else if (typeof sum === "undefined") {
+                return sum = 0;
             }
         }
     
         score();
     
-        if (plNum === 1) {
+        if (plNum === 1 && !oneScores.smallStraightSaved) {
             setOneScores({
                 ...oneScores,
-                smallStraight: sum
+                smallStraight: sum,
+                smallStraightSaved: true,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + sum + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2) {
+        } else if (plNum === 2 && !twoScores.smallStraightSaved) {
             setTwoScores({
                 ...twoScores,
-                smallStraight: sum
+                smallStraight: sum,
+                smallStraightSaved: true,
+                total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + twoScores.fiveOfKind + sum + twoScores.largeStraight + twoScores.full + twoScores.chance
             })
-        } else if (plNum === 3) {
+        } else if (plNum === 3 && !threeScores.smallStraightSaved) {
             setThreeScores({
                 ...threeScores,
-                smallStraight: sum
+                smallStraight: sum,
+                smallStraightSaved: true,
+                total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + threeScores.fiveOfKind + sum + threeScores.largeStraight + threeScores.full + threeScores.chance
             })
-        } else if (plNum === 4) {
+        } else if (plNum === 4 && !fourScores.smallStraightSaved) {
             setFourScores({
                 ...fourScores,
-                smallStraight: sum
+                smallStraight: sum,
+                smallStraightSaved: true,
+                total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + fourScores.fiveOfKind + sum + fourScores.largeStraight + fourScores.full + fourScores.chance
             })
-        } else if (plNum === 5) {
+        } else if (plNum === 5 && !fiveScores.smallStraightSaved) {
             setFiveScores({
                 ...fiveScores,
-                smallStraight: sum
+                smallStraight: sum,
+                smallStraightSaved: true,
+                total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + sum + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
             })
         }
     }
@@ -608,35 +755,47 @@ const GameTable = ({
                 return sum = full.reduce((acc, curr) => acc + curr);
             } else if (full.length !== 5) {
                 return sum = 0;
+            } else if (typeof sum === "undefined") {
+                return sum = 0;
             }
         }
     
         score();
     
-        if (plNum === 1) {
+        if (plNum === 1 && !oneScores.fullSaved) {
             setOneScores({
                 ...oneScores,
-                full: sum
+                full: sum,
+                fullSaved: true,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + sum + oneScores.chance
             })
-        } else if (plNum === 2) {
+        } else if (plNum === 2 && !twoScores.fullSaved) {
             setTwoScores({
                 ...twoScores,
-                full: sum
+                full: sum,
+                fullSaved: true,
+                total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + twoScores.fiveOfKind + twoScores.smallStraight + twoScores.largeStraight + sum + twoScores.chance
             })
-        } else if (plNum === 3) {
+        } else if (plNum === 3 && !threeScores.fullSaved) {
             setThreeScores({
                 ...threeScores,
-                full: sum
+                full: sum,
+                fullSaved: true,
+                total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + threeScores.fiveOfKind + threeScores.smallStraight + threeScores.largeStraight + sum + threeScores.chance
             })
-        } else if (plNum === 4) {
+        } else if (plNum === 4 && !fourScores.fullSaved) {
             setFourScores({
                 ...fourScores,
-                full: sum
+                full: sum,
+                fullSaved: true,
+                total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + fourScores.fiveOfKind + fourScores.smallStraight + fourScores.largeStraight + sum + fourScores.chance
             })
-        } else if (plNum === 5) {
+        } else if (plNum === 5 && !fiveScores.fullSaved) {
             setFiveScores({
                 ...fiveScores,
-                full: sum
+                full: sum,
+                fullSaved: true,
+                total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + sum + fiveScores.chance
             })
         }
     }
@@ -653,35 +812,47 @@ const GameTable = ({
                 return sum = 0;
             } else if (chance.length === 5) {
                 return sum = chance.reduce((acc, curr) => acc + curr);
+            } else if (typeof sum === "undefined") {
+                return sum = 0;
             }
         }
     
         score();
     
-        if (plNum === 1) {
+        if (plNum === 1 && !oneScores.chanceSaved) {
             setOneScores({
                 ...oneScores,
-                chance: sum
+                chance: sum,
+                chanceSaved: true,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + sum
             })
-        } else if (plNum === 2) {
+        } else if (plNum === 2 && !twoScores.chanceSaved) {
             setTwoScores({
                 ...twoScores,
-                chance: sum
+                chance: sum,
+                chanceSaved: true,
+                total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + twoScores.fiveOfKind + twoScores.smallStraight + twoScores.largeStraight + twoScores.full + sum
             })
-        } else if (plNum === 3) {
+        } else if (plNum === 3 && !threeScores.chanceSaved) {
             setThreeScores({
                 ...threeScores,
-                chance: sum
+                chance: sum,
+                chanceSaved: true,
+                total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + threeScores.fiveOfKind + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + sum
             })
-        } else if (plNum === 4) {
+        } else if (plNum === 4 && !fourScores.chanceSaved) {
             setFourScores({
                 ...fourScores,
-                chance: sum
+                chance: sum,
+                chanceSaved: true,
+                total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + fourScores.fiveOfKind + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + sum
             })
-        } else if (plNum === 5) {
+        } else if (plNum === 5 && !fiveScores.chanceSaved) {
             setFiveScores({
                 ...fiveScores,
-                chance: sum
+                chance: sum,
+                chanceSaved: true,
+                total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + sum
             })
         }
     }
@@ -701,35 +872,47 @@ const GameTable = ({
                 return sum = fiveOfKind.reduce((acc, curr) => acc + curr);
             } else if (fiveOfKind.length !== 5 || isFiveOfKind.length !== 1) {
                 return sum = 0;
+            } else if (typeof sum === "undefined") {
+                return sum = 0;
             }
         }
     
         score();
     
-        if (plNum === 1) {
+        if (plNum === 1 && !oneScores.fiveOfKindSaved && sum !== 0) {
             setOneScores({
                 ...oneScores,
-                fiveOfKind: sum + 50
+                fiveOfKind: sum + 50,
+                fiveOfKindSaved: true,
+                total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + sum + 50 + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2) {
+        } else if (plNum === 2 && !twoScores.fiveOfKindSaved && sum !== 0) {
             setTwoScores({
                 ...twoScores,
-                fiveOfKind: sum + 50
+                fiveOfKind: sum + 50,
+                fiveOfKindSaved: true,
+                total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + sum + 50 + twoScores.smallStraight + twoScores.largeStraight + twoScores.full + twoScores.chance
             })
-        } else if (plNum === 3) {
+        } else if (plNum === 3 && !threeScores.fiveOfKindSaved && sum !== 0) {
             setThreeScores({
                 ...threeScores,
-                fiveOfKind: sum + 50
+                fiveOfKind: sum + 50,
+                fiveOfKindSaved: true,
+                total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + sum + 50 + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + threeScores.chance
             })
-        } else if (plNum === 4) {
+        } else if (plNum === 4 && !fourScores.fiveOfKindSaved && sum !== 0) {
             setFourScores({
                 ...fourScores,
-                fiveOfKind: sum + 50
+                fiveOfKind: sum + 50,
+                fiveOfKindSaved: true,
+                total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + sum + 50 + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + fourScores.chance
             })
-        } else if (plNum === 5) {
+        } else if (plNum === 5 && !fiveScores.fiveOfKindSaved && sum !== 0) {
             setFiveScores({
                 ...fiveScores,
-                fiveOfKind: sum + 50
+                fiveOfKind: sum + 50,
+                fiveOfKindSaved: true,
+                total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + sum + 50 + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
             })
         }
     }
@@ -814,7 +997,7 @@ const GameTable = ({
                     </tr>
                     <tr className="sum-row">
                         <td>SUM</td>
-                        <td>0</td>
+                        <td>{(oneScores.sum > 0) ? oneScores.sum : 0}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -896,7 +1079,7 @@ const GameTable = ({
                 <tfoot>
                     <tr className="sum-row">
                         <td className="total-cell">TOTAL</td>
-                        <td>0</td>
+                        <td>{(oneScores.total > 0) ? oneScores.total : 0}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
