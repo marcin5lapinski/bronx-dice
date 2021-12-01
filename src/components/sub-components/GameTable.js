@@ -18,7 +18,10 @@ const GameTable = ({
             setRollCount,
             setDiceState,
             setClicked,
+            queue,
+            setQueue
         }) => {
+
 
 
     const nextTurn = () => {
@@ -37,7 +40,14 @@ const GameTable = ({
             four: false,
             five: false
         });
+        setQueue(queue + 1);
+
+        if (queue >= countPlayers) {
+            setQueue(1);
+        }
     }
+
+    console.log("Q = " + queue + " cp = " + countPlayers);
 
 
     const acesCheck = (plNum) => {
@@ -62,6 +72,37 @@ const GameTable = ({
         }
     
         score();
+
+        const isUpperFilled = () => {
+            if (oneScores.twosSaved && oneScores.threesSaved && oneScores.foursSaved && oneScores.fivesSaved && oneScores.sixesSaved) {
+                setOneScores({
+                    ...oneScores,
+                    upperFilled: true
+                })
+            } else if (twoScores.twosSaved && twoScores.threesSaved && twoScores.foursSaved && twoScores.fivesSaved && twoScores.sixesSaved) {
+                setTwoScores({
+                    ...twoScores,
+                    upperFilled: true
+                })
+            } else if (threeScores.twosSaved && threeScores.threesSaved && threeScores.foursSaved && threeScores.fivesSaved && threeScores.sixesSaved) {
+                setThreeScores({
+                    ...threeScores,
+                    upperFilled: true
+                })
+            } else if (fourScores.twosSaved && fourScores.threesSaved && fourScores.foursSaved && fourScores.fivesSaved && fourScores.sixesSaved) {
+                setFourScores({
+                    ...fourScores,
+                    upperFilled: true
+                })
+            } else if (fiveScores.twosSaved && fiveScores.threesSaved && fiveScores.foursSaved && fiveScores.fivesSaved && fiveScores.sixesSaved) {
+                setFiveScores({
+                    ...fiveScores,
+                    upperFilled: true
+                })
+            }
+        }
+
+        isUpperFilled();
     
         if (plNum === 1 && !oneScores.acesSaved) {
             setOneScores({
@@ -70,6 +111,7 @@ const GameTable = ({
                 acesSaved: true,
                 sum: sum + oneScores.twos + oneScores.threes + oneScores.fours + oneScores.fives + oneScores.sixes + oneScores.bonus
             })
+            nextTurn();
         } else if (plNum === 2 && !twoScores.acesSaved) {
             setTwoScores({
                 ...twoScores,
@@ -77,6 +119,7 @@ const GameTable = ({
                 acesSaved: true,
                 sum: sum + twoScores.twos + twoScores.threes + twoScores.fours + twoScores.fives + twoScores.sixes + twoScores.bonus
             })
+            nextTurn();
         } else if (plNum === 3 && !threeScores.acesSaved) {
             setThreeScores({
                 ...threeScores,
@@ -84,6 +127,7 @@ const GameTable = ({
                 acesSaved: true,
                 sum: sum + threeScores.twos + threeScores.threes + threeScores.fours + threeScores.fives + threeScores.sixes + threeScores.bonus
             })
+            nextTurn();
         } else if (plNum === 4 && !fourScores.acesSaved) {
             setFourScores({
                 ...fourScores,
@@ -91,6 +135,7 @@ const GameTable = ({
                 acesSaved: true,
                 sum: sum + fourScores.twos + fourScores.threes + fourScores.fours + fourScores.fives + fourScores.sixes + fourScores.bonus
             })
+            nextTurn();
         } else if (plNum === 5 && !fiveScores.acesSaved) {
             setFiveScores({
                 ...fiveScores,
@@ -98,10 +143,11 @@ const GameTable = ({
                 acesSaved: true,
                 sum: sum + fiveScores.twos + fiveScores.threes + fiveScores.fours + fiveScores.fives + fiveScores.sixes + fiveScores.bonus
             })
+            nextTurn();
         }
-
-        nextTurn();
+        
     }
+    console.log("upper " + oneScores.upperFilled);
 
     const twosCheck = (plNum) => {
 
@@ -125,6 +171,37 @@ const GameTable = ({
         }
     
         score();
+
+        const isUpperFilled = () => {
+            if (oneScores.acesSaved && oneScores.threesSaved && oneScores.foursSaved && oneScores.fivesSaved && oneScores.sixesSaved) {
+                setOneScores({
+                    ...oneScores,
+                    upperFilled: true
+                })
+            } else if (twoScores.acesSaved && twoScores.threesSaved && twoScores.foursSaved && twoScores.fivesSaved && twoScores.sixesSaved) {
+                setTwoScores({
+                    ...twoScores,
+                    upperFilled: true
+                })
+            } else if (threeScores.acesSaved && threeScores.threesSaved && threeScores.foursSaved && threeScores.fivesSaved && threeScores.sixesSaved) {
+                setThreeScores({
+                    ...threeScores,
+                    upperFilled: true
+                })
+            } else if (fourScores.acesSaved && fourScores.threesSaved && fourScores.foursSaved && fourScores.fivesSaved && fourScores.sixesSaved) {
+                setFourScores({
+                    ...fourScores,
+                    upperFilled: true
+                })
+            } else if (fiveScores.acesSaved && fiveScores.threesSaved && fiveScores.foursSaved && fiveScores.fivesSaved && fiveScores.sixesSaved) {
+                setFiveScores({
+                    ...fiveScores,
+                    upperFilled: true
+                })
+            }
+        }
+
+        isUpperFilled();
     
         if (plNum === 1 && !oneScores.twosSaved) {
             setOneScores({
@@ -133,6 +210,7 @@ const GameTable = ({
                 twosSaved: true,
                 sum: oneScores.aces + sum + oneScores.threes + oneScores.fours + oneScores.fives + oneScores.sixes + oneScores.bonus
             })
+            nextTurn();
         } else if (plNum === 2 && !twoScores.twosSaved) {
             setTwoScores({
                 ...twoScores,
@@ -140,6 +218,7 @@ const GameTable = ({
                 twosSaved: true,
                 sum: twoScores.aces + sum + twoScores.threes + twoScores.fours + twoScores.fives + twoScores.sixes + twoScores.bonus
             })
+            nextTurn();
         } else if (plNum === 3 && !threeScores.twosSaved) {
             setThreeScores({
                 ...threeScores,
@@ -147,6 +226,7 @@ const GameTable = ({
                 twosSaved: true,
                 sum: threeScores.aces + sum + threeScores.threes + threeScores.fours + threeScores.fives + threeScores.sixes + threeScores.bonus
             })
+            nextTurn();
         } else if (plNum === 4 && !fourScores.twosSaved) {
             setFourScores({
                 ...fourScores,
@@ -154,6 +234,7 @@ const GameTable = ({
                 twosSaved: true,
                 sum: fourScores.aces + sum + fourScores.threes + fourScores.fours + fourScores.fives + fourScores.sixes + fourScores.bonus
             })
+            nextTurn();
         } else if (plNum === 5 && !fiveScores.twosSaved) {
             setFiveScores({
                 ...fiveScores,
@@ -161,9 +242,9 @@ const GameTable = ({
                 twosSaved: true,
                 sum: fiveScores.aces + sum + fiveScores.threes + fiveScores.fours + fiveScores.fives + fiveScores.sixes + fiveScores.bonus
             })
+            nextTurn();
         }
 
-        nextTurn();
     }
 
     const threesCheck = (plNum) => {
@@ -188,6 +269,37 @@ const GameTable = ({
         }
     
         score();
+
+        const isUpperFilled = () => {
+            if (oneScores.twosSaved && oneScores.acesSaved && oneScores.foursSaved && oneScores.fivesSaved && oneScores.sixesSaved) {
+                setOneScores({
+                    ...oneScores,
+                    upperFilled: true
+                })
+            } else if (twoScores.twosSaved && twoScores.acesSaved && twoScores.foursSaved && twoScores.fivesSaved && twoScores.sixesSaved) {
+                setTwoScores({
+                    ...twoScores,
+                    upperFilled: true
+                })
+            } else if (threeScores.twosSaved && threeScores.acesSaved && threeScores.foursSaved && threeScores.fivesSaved && threeScores.sixesSaved) {
+                setThreeScores({
+                    ...threeScores,
+                    upperFilled: true
+                })
+            } else if (fourScores.twosSaved && fourScores.acesSaved && fourScores.foursSaved && fourScores.fivesSaved && fourScores.sixesSaved) {
+                setFourScores({
+                    ...fourScores,
+                    upperFilled: true
+                })
+            } else if (fiveScores.twosSaved && fiveScores.acesSaved && fiveScores.foursSaved && fiveScores.fivesSaved && fiveScores.sixesSaved) {
+                setFiveScores({
+                    ...fiveScores,
+                    upperFilled: true
+                })
+            }
+        }
+
+        isUpperFilled();
     
         if (plNum === 1 && !oneScores.threesSaved) {
             setOneScores({
@@ -196,6 +308,7 @@ const GameTable = ({
                 threesSaved: true,
                 sum: oneScores.aces + oneScores.twos + sum + oneScores.fours + oneScores.fives + oneScores.sixes + oneScores.bonus
             })
+            nextTurn();
         } else if (plNum === 2 && !twoScores.threesSaved) {
             setTwoScores({
                 ...twoScores,
@@ -203,6 +316,7 @@ const GameTable = ({
                 threesSaved: true,
                 sum: twoScores.aces + twoScores.twos + sum + twoScores.fours + twoScores.fives + twoScores.sixes + twoScores.bonus
             })
+            nextTurn();
         } else if (plNum === 3 && !threeScores.threesSaved) {
             setThreeScores({
                 ...threeScores,
@@ -210,6 +324,7 @@ const GameTable = ({
                 threesSaved: true,
                 sum: threeScores.aces + threeScores.twos + sum + threeScores.fours + threeScores.fives + threeScores.sixes + threeScores.bonus
             })
+            nextTurn();
         } else if (plNum === 4 && !fourScores.threesSaved) {
             setFourScores({
                 ...fourScores,
@@ -217,6 +332,7 @@ const GameTable = ({
                 threesSaved: true,
                 sum: fourScores.aces + fourScores.twos + sum + fourScores.fours + fourScores.fives + fourScores.sixes + fourScores.bonus
             })
+            nextTurn();
         } else if (plNum === 5 && !fiveScores.threesSaved) {
             setFiveScores({
                 ...fiveScores,
@@ -224,8 +340,8 @@ const GameTable = ({
                 threesSaved: true,
                 sum: fiveScores.aces + fiveScores.twos + sum + fiveScores.fours + fiveScores.fives + fiveScores.sixes + fiveScores.bonus
             })
+            nextTurn();
         }
-        nextTurn();
     }
 
     const foursCheck = (plNum) => {
@@ -250,6 +366,37 @@ const GameTable = ({
         }
     
         score();
+
+        const isUpperFilled = () => {
+            if (oneScores.twosSaved && oneScores.threesSaved && oneScores.acesSaved && oneScores.fivesSaved && oneScores.sixesSaved) {
+                setOneScores({
+                    ...oneScores,
+                    upperFilled: true
+                })
+            } else if (twoScores.twosSaved && twoScores.threesSaved && twoScores.acesSaved && twoScores.fivesSaved && twoScores.sixesSaved) {
+                setTwoScores({
+                    ...twoScores,
+                    upperFilled: true
+                })
+            } else if (threeScores.twosSaved && threeScores.threesSaved && threeScores.acesSaved && threeScores.fivesSaved && threeScores.sixesSaved) {
+                setThreeScores({
+                    ...threeScores,
+                    upperFilled: true
+                })
+            } else if (fourScores.twosSaved && fourScores.threesSaved && fourScores.acesSaved && fourScores.fivesSaved && fourScores.sixesSaved) {
+                setFourScores({
+                    ...fourScores,
+                    upperFilled: true
+                })
+            } else if (fiveScores.twosSaved && fiveScores.threesSaved && fiveScores.acesSaved && fiveScores.fivesSaved && fiveScores.sixesSaved) {
+                setFiveScores({
+                    ...fiveScores,
+                    upperFilled: true
+                })
+            }
+        }
+
+        isUpperFilled();
     
         if (plNum === 1 && !oneScores.foursSaved) {
             setOneScores({
@@ -258,6 +405,7 @@ const GameTable = ({
                 foursSaved: true,
                 sum: oneScores.aces + oneScores.twos + oneScores.threes + sum + oneScores.fives + oneScores.sixes + oneScores.bonus
             })
+            nextTurn();
         } else if (plNum === 2 && !twoScores.foursSaved) {
             setTwoScores({
                 ...twoScores,
@@ -265,6 +413,7 @@ const GameTable = ({
                 foursSaved: true,
                 sum: twoScores.aces + twoScores.twos + twoScores.threes + sum + twoScores.fives + twoScores.sixes + twoScores.bonus
             })
+            nextTurn();
         } else if (plNum === 3 && !threeScores.foursSaved) {
             setThreeScores({
                 ...threeScores,
@@ -272,6 +421,7 @@ const GameTable = ({
                 foursSaved: true,
                 sum: threeScores.aces + threeScores.twos + threeScores.threes + sum + threeScores.fives + threeScores.sixes + threeScores.bonus
             })
+            nextTurn();
         } else if (plNum === 4 && !fourScores.foursSaved) {
             setFourScores({
                 ...fourScores,
@@ -279,6 +429,7 @@ const GameTable = ({
                 foursSaved: true,
                 sum: fourScores.aces + fourScores.twos + fourScores.threes + sum + fourScores.fives + fourScores.sixes + fourScores.bonus
             })
+            nextTurn();
         } else if (plNum === 5 && !fiveScores.foursSaved) {
             setFiveScores({
                 ...fiveScores,
@@ -286,8 +437,8 @@ const GameTable = ({
                 foursSaved: true,
                 sum: fiveScores.aces + fiveScores.twos + fiveScores.threes + sum + fiveScores.fives + fiveScores.sixes + fiveScores.bonus
             })
+            nextTurn();
         }
-        nextTurn();
     }
 
     const fivesCheck = (plNum) => {
@@ -312,6 +463,37 @@ const GameTable = ({
         }
     
         score();
+
+        const isUpperFilled = () => {
+            if (oneScores.twosSaved && oneScores.threesSaved && oneScores.foursSaved && oneScores.acesSaved && oneScores.sixesSaved) {
+                setOneScores({
+                    ...oneScores,
+                    upperFilled: true
+                })
+            } else if (twoScores.twosSaved && twoScores.threesSaved && twoScores.foursSaved && twoScores.acesSaved && twoScores.sixesSaved) {
+                setTwoScores({
+                    ...twoScores,
+                    upperFilled: true
+                })
+            } else if (threeScores.twosSaved && threeScores.threesSaved && threeScores.foursSaved && threeScores.acesSaved && threeScores.sixesSaved) {
+                setThreeScores({
+                    ...threeScores,
+                    upperFilled: true
+                })
+            } else if (fourScores.twosSaved && fourScores.threesSaved && fourScores.foursSaved && fourScores.acesSaved && fourScores.sixesSaved) {
+                setFourScores({
+                    ...fourScores,
+                    upperFilled: true
+                })
+            } else if (fiveScores.twosSaved && fiveScores.threesSaved && fiveScores.foursSaved && fiveScores.acesSaved && fiveScores.sixesSaved) {
+                setFiveScores({
+                    ...fiveScores,
+                    upperFilled: true
+                })
+            }
+        }
+
+        isUpperFilled();
     
         if (plNum === 1 && !oneScores.fivesSaved) {
             setOneScores({
@@ -320,6 +502,7 @@ const GameTable = ({
                 fivesSaved: true,
                 sum: oneScores.aces + oneScores.twos + oneScores.threes + oneScores.fours + sum + oneScores.sixes + oneScores.bonus
             })
+            nextTurn();
         } else if (plNum === 2 && !twoScores.fivesSaved) {
             setTwoScores({
                 ...twoScores,
@@ -327,6 +510,7 @@ const GameTable = ({
                 fivesSaved: true,
                 sum: twoScores.aces + twoScores.twos + twoScores.threes + twoScores.fours + sum + twoScores.sixes + twoScores.bonus
             })
+            nextTurn();
         } else if (plNum === 3 && !threeScores.fivesSaved) {
             setThreeScores({
                 ...threeScores,
@@ -334,6 +518,7 @@ const GameTable = ({
                 fivesSaved: true,
                 sum: threeScores.aces + threeScores.twos + threeScores.threes + threeScores.fours + sum + threeScores.sixes + threeScores.bonus
             })
+            nextTurn();
         } else if (plNum === 4 && !fourScores.fivesSaved) {
             setFourScores({
                 ...fourScores,
@@ -341,6 +526,7 @@ const GameTable = ({
                 fivesSaved: true,
                 sum: fourScores.aces + fourScores.twos + fourScores.threes + fourScores.fours + sum + fourScores.sixes + fourScores.bonus
             })
+            nextTurn();
         } else if (plNum === 5 && !fiveScores.fivesSaved) {
             setFiveScores({
                 ...fiveScores,
@@ -348,8 +534,8 @@ const GameTable = ({
                 fivesSaved: true,
                 sum: fiveScores.aces + fiveScores.twos + fiveScores.threes + fiveScores.fours + sum + fiveScores.sixes + fiveScores.bonus
             })
+            nextTurn();
         }
-        nextTurn();
     }
 
     const sixesCheck = (plNum) => {
@@ -374,6 +560,37 @@ const GameTable = ({
         }
     
         score();
+
+        const isUpperFilled = () => {
+            if (oneScores.twosSaved && oneScores.threesSaved && oneScores.foursSaved && oneScores.fivesSaved && oneScores.acesSaved) {
+                setOneScores({
+                    ...oneScores,
+                    upperFilled: true
+                })
+            } else if (twoScores.twosSaved && twoScores.threesSaved && twoScores.foursSaved && twoScores.fivesSaved && twoScores.acesSaved) {
+                setTwoScores({
+                    ...twoScores,
+                    upperFilled: true
+                })
+            } else if (threeScores.twosSaved && threeScores.threesSaved && threeScores.foursSaved && threeScores.fivesSaved && threeScores.acesSaved) {
+                setThreeScores({
+                    ...threeScores,
+                    upperFilled: true
+                })
+            } else if (fourScores.twosSaved && fourScores.threesSaved && fourScores.foursSaved && fourScores.fivesSaved && fourScores.acesSaved) {
+                setFourScores({
+                    ...fourScores,
+                    upperFilled: true
+                })
+            } else if (fiveScores.twosSaved && fiveScores.threesSaved && fiveScores.foursSaved && fiveScores.fivesSaved && fiveScores.acesSaved) {
+                setFiveScores({
+                    ...fiveScores,
+                    upperFilled: true
+                })
+            }
+        }
+
+        isUpperFilled();
     
         if (plNum === 1 && !oneScores.sixesSaved) {
             setOneScores({
@@ -382,6 +599,7 @@ const GameTable = ({
                 sixesSaved: true,
                 sum: oneScores.aces + oneScores.twos + oneScores.threes + oneScores.fours + oneScores.fives + sum + oneScores.bonus
             })
+            nextTurn();
         } else if (plNum === 2 && !twoScores.sixesSaved) {
             setTwoScores({
                 ...twoScores,
@@ -389,6 +607,7 @@ const GameTable = ({
                 sixesSaved: true,
                 sum: twoScores.aces + twoScores.twos + twoScores.threes + twoScores.fours + twoScores.fives + sum + twoScores.bonus
             })
+            nextTurn();
         } else if (plNum === 3 && !threeScores.sixesSaved) {
             setThreeScores({
                 ...threeScores,
@@ -396,6 +615,7 @@ const GameTable = ({
                 sixesSaved: true,
                 sum: threeScores.aces + threeScores.twos + threeScores.threes + threeScores.fours + threeScores.fives + sum + threeScores.bonus
             })
+            nextTurn();
         } else if (plNum === 4 && !fourScores.sixesSaved) {
             setFourScores({
                 ...fourScores,
@@ -403,6 +623,7 @@ const GameTable = ({
                 sixesSaved: true,
                 sum: fourScores.aces + fourScores.twos + fourScores.threes + fourScores.fours + fourScores.fives + sum + fourScores.bonus
             })
+            nextTurn();
         } else if (plNum === 5 && !fiveScores.sixesSaved) {
             setFiveScores({
                 ...fiveScores,
@@ -410,8 +631,8 @@ const GameTable = ({
                 sixesSaved: true,
                 sum: fiveScores.aces + fiveScores.twos + fiveScores.threes + fiveScores.fours + fiveScores.fives + sum + fiveScores.bonus
             })
+            nextTurn();
         }
-        nextTurn();
     }
 
     const pairCheck = (plNum) => {
@@ -433,43 +654,47 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.pairSaved) {
+        if (plNum === 1 && !oneScores.pairSaved && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 pair: sum,
                 pairSaved: true,
                 total: oneScores.sum + sum + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2 && !twoScores.pairSaved) {
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.pairSaved && twoScores.upperFilled) {
             setTwoScores({
                 ...twoScores,
                 pair: sum,
                 pairSaved: true,
                 total: twoScores.sum + sum + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + twoScores.fiveOfKind + twoScores.smallStraight + twoScores.largeStraight + twoScores.full + twoScores.chance
             })
-        } else if (plNum === 3 && !threeScores.pairSaved) {
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.pairSaved && threeScores.upperFilled) {
             setThreeScores({
                 ...threeScores,
                 pair: sum,
                 pairSaved: true,
                 total: threeScores.sum + sum + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + threeScores.fiveOfKind + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + threeScores.chance
             })
-        } else if (plNum === 4 && !fourScores.pairSaved) {
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.pairSaved  && fourScores.upperFilled) {
             setFourScores({
                 ...fourScores,
                 pair: sum,
                 pairSaved: true,
                 total: fourScores.sum + sum + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + fourScores.fiveOfKind + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + fourScores.chance
             })
-        } else if (plNum === 5 && !fiveScores.pairSaved) {
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.pairSaved  && fiveScores.upperFilled) {
             setFiveScores({
                 ...fiveScores,
                 pair: sum,
                 pairSaved: true,
                 total: fiveScores.sum + sum + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
             })
+            nextTurn();
         }
-        nextTurn();
     }
 
     const twoPairCheck = (plNum) => {
@@ -493,43 +718,47 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.twoPairSaved) {
+        if (plNum === 1 && !oneScores.twoPairSaved && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 twoPair: sum,
                 twoPairSaved: true,
                 total: oneScores.sum + oneScores.pair + sum + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2 && !twoScores.twoPairSaved) {
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.twoPairSaved  && twoScores.upperFilled) {
             setTwoScores({
                 ...twoScores,
                 twoPair: sum,
                 twoPairSaved: true,
                 total: oneScores.sum + oneScores.pair + sum + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 3 && !threeScores.twoPairSaved) {
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.twoPairSaved && threeScores.upperFilled) {
             setThreeScores({
                 ...threeScores,
                 twoPair: sum,
                 twoPairSaved: true,
                 total: threeScores.sum + threeScores.pair + sum + threeScores.threeOfKind + threeScores.fourOfKind + threeScores.fiveOfKind + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + threeScores.chance
             })
-        } else if (plNum === 4 && !fourScores.twoPairSaved) {
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.twoPairSaved && fourScores.upperFilled) {
             setFourScores({
                 ...fourScores,
                 twoPair: sum,
                 twoPairSaved: true,
                 total: fourScores.sum + fourScores.pair + sum + fourScores.threeOfKind + fourScores.fourOfKind + fourScores.fiveOfKind + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + fourScores.chance
             })
-        } else if (plNum === 5 && !fiveScores.twoPairSaved) {
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.twoPairSaved  && fiveScores.upperFilled) {
             setFiveScores({
                 ...fiveScores,
                 twoPair: sum,
                 twoPairSaved: true,
                 total: fiveScores.sum + fiveScores.pair + sum + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
             })
+            nextTurn();
         }
-        nextTurn();
     }
 
     const threeOfKindCheck = (plNum) => {
@@ -553,43 +782,47 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.threeOfKindSaved) {
+        if (plNum === 1 && !oneScores.threeOfKindSaved  && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 threeOfKind: sum,
                 threeOfKindSaved: true,
                 total: oneScores.sum + oneScores.pair + oneScores.twoPair + sum + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2 && !twoScores.threeOfKindSaved) {
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.threeOfKindSaved && twoScores.upperFilled) {
             setTwoScores({
                 ...twoScores,
                 threeOfKind: sum,
                 threeOfKindSaved: true,
                 total: twoScores.sum + twoScores.pair + twoScores.twoPair + sum + twoScores.fourOfKind + twoScores.fiveOfKind + twoScores.smallStraight + twoScores.largeStraight + twoScores.full + twoScores.chance
             })
-        } else if (plNum === 3 && !threeScores.threeOfKindSaved) {
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.threeOfKindSaved && threeScores.upperFilled) {
             setThreeScores({
                 ...threeScores,
                 threeOfKind: sum,
                 threeOfKindSaved: true,
                 total: threeScores.sum + threeScores.pair + threeScores.twoPair + sum + threeScores.fourOfKind + threeScores.fiveOfKind + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + threeScores.chance
             })
-        } else if (plNum === 4 && !fourScores.threeOfKindSaved) {
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.threeOfKindSaved  && fourScores.upperFilled) {
             setFourScores({
                 ...fourScores,
                 threeOfKind: sum,
                 threeOfKindSaved: true,
                 total: fourScores.sum + fourScores.pair + fourScores.twoPair + sum + fourScores.fourOfKind + fourScores.fiveOfKind + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + fourScores.chance
             })
-        } else if (plNum === 5 && !fiveScores.threeOfKindSaved) {
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.threeOfKindSaved && fiveScores.upperFilled) {
             setFiveScores({
                 ...fiveScores,
                 threeOfKind: sum,
                 threeOfKindSaved: true,
                 total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + sum + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
             })
+            nextTurn();
         }
-        nextTurn();
     }
 
     const fourOfKindCheck = (plNum) => {
@@ -613,43 +846,47 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.fourOfKindSaved) {
+        if (plNum === 1 && !oneScores.fourOfKindSaved && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 fourOfKind: sum,
                 fourOfKindSaved: true,
                 total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + sum + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2 && !twoScores.fourOfKindSaved) {
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.fourOfKindSaved && twoScores.upperFilled) {
             setTwoScores({
                 ...twoScores,
                 fourOfKind: sum,
                 fourOfKindSaved: true,
                 total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + sum + twoScores.fiveOfKind + twoScores.smallStraight + twoScores.largeStraight + twoScores.full + twoScores.chance
             })
-        } else if (plNum === 3 && !threeScores.fourOfKindSaved) {
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.fourOfKindSaved && threeScores.upperFilled) {
             setThreeScores({
                 ...threeScores,
                 fourOfKind: sum,
                 fourOfKindSaved: true,
                 total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + sum + threeScores.fiveOfKind + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + threeScores.chance
             })
-        } else if (plNum === 4 && !fourScores.fourOfKindSaved) {
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.fourOfKindSaved && fourScores.upperFilled) {
             setFourScores({
                 ...fourScores,
                 fourOfKind: sum,
                 fourOfKindSaved: true,
                 total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + sum + fourScores.fiveOfKind + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + fourScores.chance
             })
-        } else if (plNum === 5 && !fiveScores.fourOfKindSaved) {
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.fourOfKindSaved && fiveScores.upperFilled) {
             setFiveScores({
                 ...fiveScores,
                 fourOfKind: sum,
                 fourOfKindSaved: true,
                 total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + sum + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
             })
+            nextTurn();
         }
-        nextTurn();
     }
 
     const largeStraightCheck = (plNum) => {
@@ -673,43 +910,47 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.largeStraightSaved) {
+        if (plNum === 1 && !oneScores.largeStraightSaved  && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 largeStraight: sum,
                 largeStraightSaved: true,
                 total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + sum + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2 && !twoScores.largeStraightSaved) {
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.largeStraightSaved && twoScores.upperFilled) {
             setTwoScores({
                 ...twoScores,
                 largeStraight: sum,
                 largeStraightSaved: true,
                 total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + twoScores.fiveOfKind + twoScores.smallStraight + sum + twoScores.full + twoScores.chance
             })
-        } else if (plNum === 3 && !threeScores.largeStraightSaved) {
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.largeStraightSaved && threeScores.upperFilled) {
             setThreeScores({
                 ...threeScores,
                 largeStraight: sum,
                 largeStraightSaved: true,
                 total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + threeScores.fiveOfKind + threeScores.smallStraight + sum + threeScores.full + threeScores.chance
             })
-        } else if (plNum === 4 && !fourScores.largeStraightSaved) {
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.largeStraightSaved && fourScores.upperFilled) {
             setFourScores({
                 ...fourScores,
                 largeStraight: sum,
                 largeStraightSaved: true,
                 total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + fourScores.fiveOfKind + fourScores.smallStraight + sum + fourScores.full + fourScores.chance
             })
-        } else if (plNum === 5 && !fiveScores.largeStraightSaved) {
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.largeStraightSaved && fiveScores.upperFilled) {
             setFiveScores({
                 ...fiveScores,
                 largeStraight: sum,
                 largeStraightSaved: true,
                 total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + sum + fiveScores.full + fiveScores.chance
             })
+            nextTurn();
         }
-        nextTurn();
     }
 
     const smallStraightCheck = (plNum) => {
@@ -733,43 +974,47 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.smallStraightSaved) {
+        if (plNum === 1 && !oneScores.smallStraightSaved && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 smallStraight: sum,
                 smallStraightSaved: true,
                 total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + sum + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2 && !twoScores.smallStraightSaved) {
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.smallStraightSaved && twoScores.upperFilled) {
             setTwoScores({
                 ...twoScores,
                 smallStraight: sum,
                 smallStraightSaved: true,
                 total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + twoScores.fiveOfKind + sum + twoScores.largeStraight + twoScores.full + twoScores.chance
             })
-        } else if (plNum === 3 && !threeScores.smallStraightSaved) {
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.smallStraightSaved && threeScores.upperFilled) {
             setThreeScores({
                 ...threeScores,
                 smallStraight: sum,
                 smallStraightSaved: true,
                 total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + threeScores.fiveOfKind + sum + threeScores.largeStraight + threeScores.full + threeScores.chance
             })
-        } else if (plNum === 4 && !fourScores.smallStraightSaved) {
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.smallStraightSaved && fourScores.upperFilled) {
             setFourScores({
                 ...fourScores,
                 smallStraight: sum,
                 smallStraightSaved: true,
                 total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + fourScores.fiveOfKind + sum + fourScores.largeStraight + fourScores.full + fourScores.chance
             })
-        } else if (plNum === 5 && !fiveScores.smallStraightSaved) {
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.smallStraightSaved && fiveScores.upperFilled) {
             setFiveScores({
                 ...fiveScores,
                 smallStraight: sum,
                 smallStraightSaved: true,
                 total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + sum + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
             })
+            nextTurn();
         }
-        nextTurn();
     }
 
     const fullCheck = (plNum) => {
@@ -794,43 +1039,47 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.fullSaved) {
+        if (plNum === 1 && !oneScores.fullSaved  && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 full: sum,
                 fullSaved: true,
                 total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + sum + oneScores.chance
             })
-        } else if (plNum === 2 && !twoScores.fullSaved) {
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.fullSaved && twoScores.upperFilled) {
             setTwoScores({
                 ...twoScores,
                 full: sum,
                 fullSaved: true,
                 total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + twoScores.fiveOfKind + twoScores.smallStraight + twoScores.largeStraight + sum + twoScores.chance
             })
-        } else if (plNum === 3 && !threeScores.fullSaved) {
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.fullSaved && threeScores.upperFilled) {
             setThreeScores({
                 ...threeScores,
                 full: sum,
                 fullSaved: true,
                 total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + threeScores.fiveOfKind + threeScores.smallStraight + threeScores.largeStraight + sum + threeScores.chance
             })
-        } else if (plNum === 4 && !fourScores.fullSaved) {
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.fullSaved && fourScores.upperFilled) {
             setFourScores({
                 ...fourScores,
                 full: sum,
                 fullSaved: true,
                 total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + fourScores.fiveOfKind + fourScores.smallStraight + fourScores.largeStraight + sum + fourScores.chance
             })
-        } else if (plNum === 5 && !fiveScores.fullSaved) {
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.fullSaved && fiveScores.upperFilled) {
             setFiveScores({
                 ...fiveScores,
                 full: sum,
                 fullSaved: true,
                 total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + sum + fiveScores.chance
             })
+            nextTurn();
         }
-        nextTurn();
     }
 
     const chanceCheck = (plNum) => {
@@ -852,44 +1101,47 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.chanceSaved) {
+        if (plNum === 1 && !oneScores.chanceSaved && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 chance: sum,
                 chanceSaved: true,
                 total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + oneScores.fiveOfKind + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + sum
             })
-        } else if (plNum === 2 && !twoScores.chanceSaved) {
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.chanceSaved && twoScores.upperFilled) {
             setTwoScores({
                 ...twoScores,
                 chance: sum,
                 chanceSaved: true,
                 total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + twoScores.fiveOfKind + twoScores.smallStraight + twoScores.largeStraight + twoScores.full + sum
             })
-        } else if (plNum === 3 && !threeScores.chanceSaved) {
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.chanceSaved && threeScores.upperFilled) {
             setThreeScores({
                 ...threeScores,
                 chance: sum,
                 chanceSaved: true,
                 total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + threeScores.fiveOfKind + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + sum
             })
-        } else if (plNum === 4 && !fourScores.chanceSaved) {
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.chanceSaved && fourScores.upperFilled) {
             setFourScores({
                 ...fourScores,
                 chance: sum,
                 chanceSaved: true,
                 total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + fourScores.fiveOfKind + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + sum
             })
-        } else if (plNum === 5 && !fiveScores.chanceSaved) {
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.chanceSaved && fiveScores.upperFilled) {
             setFiveScores({
                 ...fiveScores,
                 chance: sum,
                 chanceSaved: true,
                 total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + fiveScores.fiveOfKind + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + sum
             })
+            nextTurn();
         }
-
-        nextTurn();
     }
 
     const fiveOfKindCheck = (plNum) => {
@@ -914,79 +1166,87 @@ const GameTable = ({
     
         score();
     
-        if (plNum === 1 && !oneScores.fiveOfKindSaved && sum > 0) {
+        if (plNum === 1 && !oneScores.fiveOfKindSaved && sum > 0 && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 fiveOfKind: sum + 50,
                 fiveOfKindSaved: true,
                 total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + sum + 50 + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2 && !twoScores.fiveOfKindSaved && sum > 0) {
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.fiveOfKindSaved && sum > 0 && twoScores.upperFilled) {
             setTwoScores({
                 ...twoScores,
                 fiveOfKind: sum + 50,
                 fiveOfKindSaved: true,
                 total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + sum + 50 + twoScores.smallStraight + twoScores.largeStraight + twoScores.full + twoScores.chance
             })
-        } else if (plNum === 3 && !threeScores.fiveOfKindSaved && sum > 0) {
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.fiveOfKindSaved && sum > 0 && threeScores.upperFilled) {
             setThreeScores({
                 ...threeScores,
                 fiveOfKind: sum + 50,
                 fiveOfKindSaved: true,
                 total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + sum + 50 + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + threeScores.chance
             })
-        } else if (plNum === 4 && !fourScores.fiveOfKindSaved && sum > 0) {
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.fiveOfKindSaved && sum > 0 && fourScores.upperFilled) {
             setFourScores({
                 ...fourScores,
                 fiveOfKind: sum + 50,
                 fiveOfKindSaved: true,
                 total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + sum + 50 + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + fourScores.chance
             })
-        } else if (plNum === 5 && !fiveScores.fiveOfKindSaved && sum > 0) {
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.fiveOfKindSaved && sum > 0 && fiveScores.upperFilled) {
             setFiveScores({
                 ...fiveScores,
                 fiveOfKind: sum + 50,
                 fiveOfKindSaved: true,
                 total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + sum + 50 + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
             })
-        } else if (plNum === 1 && !oneScores.fiveOfKindSaved && sum === 0) {
+            nextTurn();
+        } else if (plNum === 1 && !oneScores.fiveOfKindSaved && sum === 0 && oneScores.upperFilled) {
             setOneScores({
                 ...oneScores,
                 fiveOfKind: sum,
                 fiveOfKindSaved: true,
                 total: oneScores.sum + oneScores.pair + oneScores.twoPair + oneScores.threeOfKind + oneScores.fourOfKind + sum + oneScores.smallStraight + oneScores.largeStraight + oneScores.full + oneScores.chance
             })
-        } else if (plNum === 2 && !twoScores.fiveOfKindSaved && sum === 0) {
+            nextTurn();
+        } else if (plNum === 2 && !twoScores.fiveOfKindSaved && sum === 0 && twoScores.upperFilled) {
             setTwoScores({
                 ...twoScores,
                 fiveOfKind: sum,
                 fiveOfKindSaved: true,
                 total: twoScores.sum + twoScores.pair + twoScores.twoPair + twoScores.threeOfKind + twoScores.fourOfKind + sum + twoScores.smallStraight + twoScores.largeStraight + twoScores.full + twoScores.chance
             })
-        } else if (plNum === 3 && !threeScores.fiveOfKindSaved && sum === 0) {
+            nextTurn();
+        } else if (plNum === 3 && !threeScores.fiveOfKindSaved && sum === 0 && threeScores.upperFilled) {
             setThreeScores({
                 ...threeScores,
                 fiveOfKind: sum,
                 fiveOfKindSaved: true,
                 total: threeScores.sum + threeScores.pair + threeScores.twoPair + threeScores.threeOfKind + threeScores.fourOfKind + sum + threeScores.smallStraight + threeScores.largeStraight + threeScores.full + threeScores.chance
             })
-        } else if (plNum === 4 && !fourScores.fiveOfKindSaved && sum === 0) {
+            nextTurn();
+        } else if (plNum === 4 && !fourScores.fiveOfKindSaved && sum === 0 && fourScores.upperFilled) {
             setFourScores({
                 ...fourScores,
                 fiveOfKind: sum,
                 fiveOfKindSaved: true,
                 total: fourScores.sum + fourScores.pair + fourScores.twoPair + fourScores.threeOfKind + fourScores.fourOfKind + sum + fourScores.smallStraight + fourScores.largeStraight + fourScores.full + fourScores.chance
             })
-        } else if (plNum === 5 && !fiveScores.fiveOfKindSaved && sum === 0) {
+            nextTurn();
+        } else if (plNum === 5 && !fiveScores.fiveOfKindSaved && sum === 0 && fiveScores.upperFilled) {
             setFiveScores({
                 ...fiveScores,
                 fiveOfKind: sum,
                 fiveOfKindSaved: true,
                 total: fiveScores.sum + fiveScores.pair + fiveScores.twoPair + fiveScores.threeOfKind + fiveScores.fourOfKind + sum + fiveScores.smallStraight + fiveScores.largeStraight + fiveScores.full + fiveScores.chance
             })
+            nextTurn();
         }
-
-        nextTurn();
     }
 
     const bonusCheck = (plNum) => {
@@ -1035,11 +1295,11 @@ const GameTable = ({
                 <thead>
                     <tr className="turn-mark">
                         <td className="turn-mark"></td>
-                        <td className="turn-mark">V</td>
-                        <td className="turn-mark" style={{display: playersArray.length < 2 ? "none" : ""}}></td>
-                        <td className="turn-mark" style={{display: playersArray.length < 3 ? "none" : ""}}></td>
-                        <td className="turn-mark" style={{display: playersArray.length < 4 ? "none" : ""}}></td>
-                        <td className="turn-mark" style={{display: playersArray.length < 5 ? "none" : ""}}></td>
+                        <td className="turn-mark">{queue === 1 ? "V" : ""}</td>
+                        <td className="turn-mark" style={{display: playersArray.length < 2 ? "none" : ""}}>{queue === 2 ? "V" : ""}</td>
+                        <td className="turn-mark" style={{display: playersArray.length < 3 ? "none" : ""}}>{queue === 3 ? "V" : ""}</td>
+                        <td className="turn-mark" style={{display: playersArray.length < 4 ? "none" : ""}}>{queue === 4 ? "V" : ""}</td>
+                        <td className="turn-mark" style={{display: playersArray.length < 5 ? "none" : ""}}>{queue === 5 ? "V" : ""}</td>
                     </tr>
                     <tr>
                         <td className="blank-cell"></td>
@@ -1053,7 +1313,7 @@ const GameTable = ({
                 <tbody>
                     <tr>
                         <td>I</td>
-                        <td onClick={() => acesCheck(1)}>{oneScores.acesSaved ? oneScores.aces : ""}</td>
+                        <td onClick={() => acesCheck(queue)}>{oneScores.acesSaved ? oneScores.aces : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1061,7 +1321,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>II</td>
-                        <td onClick={() => twosCheck(1)}>{oneScores.twosSaved ? oneScores.twos : ""}</td>
+                        <td onClick={() => twosCheck(queue)}>{oneScores.twosSaved ? oneScores.twos : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1069,7 +1329,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>III</td>
-                        <td onClick={() => threesCheck(1)}>{oneScores.threesSaved ? oneScores.threes : ""}</td>
+                        <td onClick={() => threesCheck(queue)}>{oneScores.threesSaved ? oneScores.threes : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1077,7 +1337,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>IV</td>
-                        <td onClick={() => foursCheck(1)}>{oneScores.foursSaved ? oneScores.fours : ""}</td>
+                        <td onClick={() => foursCheck(queue)}>{oneScores.foursSaved ? oneScores.fours : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1085,7 +1345,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>V</td>
-                        <td onClick={() => fivesCheck(1)}>{oneScores.fivesSaved ? oneScores.fives : ""}</td>
+                        <td onClick={() => fivesCheck(queue)}>{oneScores.fivesSaved ? oneScores.fives : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1093,7 +1353,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>VI</td>
-                        <td onClick={() => sixesCheck(1)}>{oneScores.sixesSaved ? oneScores.sixes : ""}</td>
+                        <td onClick={() => sixesCheck(queue)}>{oneScores.sixesSaved ? oneScores.sixes : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1101,7 +1361,7 @@ const GameTable = ({
                     </tr>
                     <tr className="bonus-row">
                         <td>BONUS</td>
-                        <td onClick={() => bonusCheck(1)}>{oneScores.bonusSaved ? oneScores.bonus : 0}</td>
+                        <td onClick={() => bonusCheck(queue)}>{oneScores.bonusSaved ? oneScores.bonus : 0}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1117,7 +1377,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>Pair</td>
-                        <td onClick={() => pairCheck(1)}>{oneScores.pairSaved ? oneScores.pair : ""}</td>
+                        <td onClick={() => pairCheck(queue)}>{oneScores.pairSaved ? oneScores.pair : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1125,7 +1385,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>2xPair</td>
-                        <td onClick={() => twoPairCheck(1)}>{oneScores.twoPairSaved ? oneScores.twoPair : ""}</td>
+                        <td onClick={() => twoPairCheck(queue)}>{oneScores.twoPairSaved ? oneScores.twoPair : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1133,7 +1393,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>3X</td>
-                        <td onClick={() => threeOfKindCheck(1)}>{oneScores.threeOfKindSaved ? oneScores.threeOfKind : ""}</td>
+                        <td onClick={() => threeOfKindCheck(queue)}>{oneScores.threeOfKindSaved ? oneScores.threeOfKind : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1141,7 +1401,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>4X</td>
-                        <td onClick={() => fourOfKindCheck(1)}>{oneScores.fourOfKindSaved ? oneScores.fourOfKind : ""}</td>
+                        <td onClick={() => fourOfKindCheck(queue)}>{oneScores.fourOfKindSaved ? oneScores.fourOfKind : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1149,7 +1409,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>S straight</td>
-                        <td onClick={() => smallStraightCheck(1)}>{oneScores.smallStraightSaved ? oneScores.smallStraight : ""}</td>
+                        <td onClick={() => smallStraightCheck(queue)}>{oneScores.smallStraightSaved ? oneScores.smallStraight : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1157,7 +1417,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>L straight</td>
-                        <td onClick={() => largeStraightCheck(1)}>{oneScores.largeStraightSaved ? oneScores.largeStraight : ""}</td>
+                        <td onClick={() => largeStraightCheck(queue)}>{oneScores.largeStraightSaved ? oneScores.largeStraight : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1165,7 +1425,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>Full</td>
-                        <td onClick={() => fullCheck(1)}>{oneScores.fullSaved ? oneScores.full : ""}</td>
+                        <td onClick={() => fullCheck(queue)}>{oneScores.fullSaved ? oneScores.full : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1173,7 +1433,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>Chance</td>
-                        <td onClick={() => chanceCheck(1)}>{oneScores.chanceSaved ? oneScores.chance : ""}</td>
+                        <td onClick={() => chanceCheck(queue)}>{oneScores.chanceSaved ? oneScores.chance : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
@@ -1181,7 +1441,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>5X</td>
-                        <td onClick={() => fiveOfKindCheck(1)}>{oneScores.fiveOfKindSaved ? oneScores.fiveOfKind : ""}</td>
+                        <td onClick={() => fiveOfKindCheck(queue)}>{oneScores.fiveOfKindSaved ? oneScores.fiveOfKind : ""}</td>
                         <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
                         <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
