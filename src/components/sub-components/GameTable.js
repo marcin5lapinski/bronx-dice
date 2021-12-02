@@ -23,8 +23,6 @@ const GameTable = ({
             setQueue
         }) => {
 
-
-
     const nextTurn = () => {
         setRollCount(3);
         setDiceState({
@@ -46,37 +44,6 @@ const GameTable = ({
         if (queue >= countPlayers) {
             setQueue(1);
         }
-
-        const isUpperFilled = () => {
-            if (!oneScores.upperFilled && oneScores.acesSaved && oneScores.twosSaved && oneScores.threesSaved && oneScores.foursSaved && oneScores.fivesSaved && oneScores.sixesSaved) {
-                setOneScores({
-                    ...oneScores,
-                    upperFilled: true
-                })
-            } else if (!twoScores.upperFilled && twoScores.acesSaved && twoScores.twosSaved && twoScores.threesSaved && twoScores.foursSaved && twoScores.fivesSaved && twoScores.sixesSaved) {
-                setTwoScores({
-                    ...twoScores,
-                    upperFilled: true
-                })
-            } else if (!threeScores.upperFilled && threeScores.acesSaved && threeScores.twosSaved && threeScores.threesSaved && threeScores.foursSaved && threeScores.fivesSaved && threeScores.sixesSaved) {
-                setThreeScores({
-                    ...threeScores,
-                    upperFilled: true
-                })
-            } else if (!fourScores.upperFilled && fourScores.acesSaved && fourScores.twosSaved && fourScores.threesSaved && fourScores.foursSaved && fourScores.fivesSaved && fourScores.sixesSaved) {
-                setFourScores({
-                    ...fourScores,
-                    upperFilled: true
-                })
-            } else if (!fiveScores.upperFilled && fiveScores.acesSaved && fiveScores.twosSaved && fiveScores.threesSaved && fiveScores.foursSaved && fiveScores.fivesSaved && fiveScores.sixesSaved) {
-                setFiveScores({
-                    ...fiveScores,
-                    upperFilled: true
-                })
-            }
-        }
-
-        isUpperFilled();
 
         const bonusCheck = () => {
 
@@ -1499,32 +1466,23 @@ const GameTable = ({
 
     console.log("ONE " + oneScores.upperFilled, "TWO " + twoScores.upperFilled, "THREE " + threeScores.upperFilled, "FOUR " + fourScores.upperFilled, "FIVE " + fiveScores.upperFilled);
 
+    const onePlStyle = {
+        background: queue === 1 ? "dodgerblue" : "transparent",
+    }
     const twoPlStyle = {
         display: playersArray.length < 2 ? "none" : "",
+        background: queue === 2 ? "dodgerblue" : "transparent",
     }
     const threePlStyle = {
         display: playersArray.length < 3 ? "none" : "",
+        background: queue === 3 ? "dodgerblue" : "transparent",
     }
     const fourPlStyle = {
         display: playersArray.length < 4 ? "none" : "",
+        background: queue === 4 ? "dodgerblue" : "transparent",
     }
     const fivePlStyle = {
         display: playersArray.length < 5 ? "none" : "",
-    }
-
-    const oneTurn = {
-        background: queue === 1 ? "dodgerblue" : "transparent",
-    }
-    const twoTurn = {
-        background: queue === 2 ? "dodgerblue" : "transparent",
-    }
-    const threeTurn = {
-        background: queue === 3 ? "dodgerblue" : "transparent",
-    }
-    const fourTurn = {
-        background: queue === 4 ? "dodgerblue" : "transparent",
-    }
-    const fiveTurn = {
         background: queue === 5 ? "dodgerblue" : "transparent",
     }
 
@@ -1534,7 +1492,7 @@ const GameTable = ({
                 <thead>
                     <tr className="turn-mark">
                         <td className="turn-mark"></td>
-                        <td className="turn-mark">{queue === 1 ? "V" : ""}</td>
+                        <td className="turn-mark" style={onePlStyle}>{queue === 1 ? "V" : ""}</td>
                         <td className="turn-mark" style={twoPlStyle}>{queue === 2 ? "V" : ""}</td>
                         <td className="turn-mark" style={threePlStyle}>{queue === 3 ? "V" : ""}</td>
                         <td className="turn-mark" style={fourPlStyle}>{queue === 4 ? "V" : ""}</td>
@@ -1542,17 +1500,17 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td className="blank-cell"></td>
-                        <td style={oneTurn}>{playersArray[0]}</td>
-                        <td style={twoPlStyle} style={twoTurn}>{playersArray[1]}</td>
-                        <td style={threePlStyle} style={threeTurn}>{playersArray[2]}</td>
-                        <td style={fourPlStyle} style={fourTurn}>{playersArray[3]}</td>
-                        <td style={fivePlStyle} style={fiveTurn}>{playersArray[4]}</td>
+                        <td style={onePlStyle}>{playersArray[0]}</td>
+                        <td style={twoPlStyle}>{playersArray[1]}</td>
+                        <td style={threePlStyle}>{playersArray[2]}</td>
+                        <td style={fourPlStyle}>{playersArray[3]}</td>
+                        <td style={fivePlStyle}>{playersArray[4]}</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>I</td>
-                        <td onClick={() => acesCheck(1)}>{oneScores.acesSaved ? oneScores.aces : ""}</td>
+                        <td style={onePlStyle} onClick={() => acesCheck(1)}>{oneScores.acesSaved ? oneScores.aces : ""}</td>
                         <td style={twoPlStyle} onClick={() => acesCheck(2)}>{twoScores.acesSaved ? twoScores.aces : ""}</td>
                         <td style={threePlStyle} onClick={() => acesCheck(3)}>{threeScores.acesSaved ? threeScores.aces : ""}</td>
                         <td style={fourPlStyle} onClick={() => acesCheck(4)}>{fourScores.acesSaved ? fourScores.aces : ""}</td>
@@ -1560,7 +1518,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>II</td>
-                        <td onClick={() => twosCheck(1)}>{oneScores.twosSaved ? oneScores.twos : ""}</td>
+                        <td style={onePlStyle} onClick={() => twosCheck(1)}>{oneScores.twosSaved ? oneScores.twos : ""}</td>
                         <td style={twoPlStyle} onClick={() => twosCheck(2)}>{twoScores.twosSaved ? twoScores.twos : ""}</td>
                         <td style={threePlStyle} onClick={() => twosCheck(3)}>{threeScores.twosSaved ? threeScores.twos : ""}</td>
                         <td style={fourPlStyle} onClick={() => twosCheck(4)}>{fourScores.twosSaved ? fourScores.twos : ""}</td>
@@ -1568,7 +1526,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>III</td>
-                        <td onClick={() => threesCheck(1)}>{oneScores.threesSaved ? oneScores.threes : ""}</td>
+                        <td style={onePlStyle} onClick={() => threesCheck(1)}>{oneScores.threesSaved ? oneScores.threes : ""}</td>
                         <td style={twoPlStyle} onClick={() => threesCheck(2)}>{twoScores.threesSaved ? twoScores.threes : ""}</td>
                         <td style={threePlStyle} onClick={() => threesCheck(3)}>{threeScores.threesSaved ? threeScores.threes : ""}</td>
                         <td style={fourPlStyle} onClick={() => threesCheck(4)}>{fourScores.threesSaved ? fourScores.threes : ""}</td>
@@ -1576,7 +1534,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>IV</td>
-                        <td onClick={() => foursCheck(1)}>{oneScores.foursSaved ? oneScores.fours : ""}</td>
+                        <td style={onePlStyle} onClick={() => foursCheck(1)}>{oneScores.foursSaved ? oneScores.fours : ""}</td>
                         <td style={twoPlStyle} onClick={() => foursCheck(2)}>{twoScores.foursSaved ? twoScores.fours : ""}</td>
                         <td style={threePlStyle} onClick={() => foursCheck(3)}>{threeScores.foursSaved ? threeScores.fours : ""}</td>
                         <td style={fourPlStyle} onClick={() => foursCheck(4)}>{fourScores.foursSaved ? fourScores.fours : ""}</td>
@@ -1584,7 +1542,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>V</td>
-                        <td onClick={() => fivesCheck(1)}>{oneScores.fivesSaved ? oneScores.fives : ""}</td>
+                        <td style={onePlStyle} onClick={() => fivesCheck(1)}>{oneScores.fivesSaved ? oneScores.fives : ""}</td>
                         <td style={twoPlStyle} onClick={() => fivesCheck(2)}>{twoScores.fivesSaved ? twoScores.fives : ""}</td>
                         <td style={threePlStyle} onClick={() => fivesCheck(3)}>{threeScores.fivesSaved ? threeScores.fives : ""}</td>
                         <td style={fourPlStyle} onClick={() => fivesCheck(4)}>{fourScores.fivesSaved ? fourScores.fives : ""}</td>
@@ -1592,7 +1550,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>VI</td>
-                        <td onClick={() => sixesCheck(1)}>{oneScores.sixesSaved ? oneScores.sixes : ""}</td>
+                        <td style={onePlStyle} onClick={() => sixesCheck(1)}>{oneScores.sixesSaved ? oneScores.sixes : ""}</td>
                         <td style={twoPlStyle} onClick={() => sixesCheck(2)}>{twoScores.sixesSaved ? twoScores.sixes : ""}</td>
                         <td style={threePlStyle} onClick={() => sixesCheck(3)}>{threeScores.sixesSaved ? threeScores.sixes : ""}</td>
                         <td style={fourPlStyle} onClick={() => sixesCheck(4)}>{fourScores.sixesSaved ? fourScores.sixes : ""}</td>
@@ -1600,7 +1558,7 @@ const GameTable = ({
                     </tr>
                     <tr className="bonus-row">
                         <td>BONUS</td>
-                        <td>{oneScores.bonus > 0 ? oneScores.bonus : 0}</td>
+                        <td style={onePlStyle}>{oneScores.bonus > 0 ? oneScores.bonus : 0}</td>
                         <td style={twoPlStyle}>{twoScores.bonus > 0 ? twoScores.bonus : 0}</td>
                         <td style={threePlStyle}>{threeScores.bonus > 0 ? threeScores.bonus : 0}</td>
                         <td style={fourPlStyle}>{fourScores.bonus > 0 ? fourScores.bonus : 0}</td>
@@ -1608,15 +1566,15 @@ const GameTable = ({
                     </tr>
                     <tr className="sum-row">
                         <td>SUM</td>
-                        <td style={oneTurn}>{(oneScores.sum > 0) ? oneScores.sum : 0}</td>
-                        <td style={twoPlStyle, twoTurn}>{(twoScores.sum > 0) ? twoScores.sum : 0}</td>
-                        <td style={threePlStyle, threeTurn}>{(threeScores.sum > 0) ? threeScores.sum : 0}</td>
-                        <td style={fourPlStyle, fourTurn}>{(fourScores.sum > 0) ? fourScores.sum : 0}</td>
-                        <td style={fivePlStyle, fiveTurn}>{(fiveScores.sum > 0) ? fiveScores.sum : 0}</td>
+                        <td style={onePlStyle}>{(oneScores.sum > 0) ? oneScores.sum : 0}</td>
+                        <td style={twoPlStyle}>{(twoScores.sum > 0) ? twoScores.sum : 0}</td>
+                        <td style={threePlStyle}>{(threeScores.sum > 0) ? threeScores.sum : 0}</td>
+                        <td style={fourPlStyle}>{(fourScores.sum > 0) ? fourScores.sum : 0}</td>
+                        <td style={fivePlStyle}>{(fiveScores.sum > 0) ? fiveScores.sum : 0}</td>
                     </tr>
                     <tr>
                         <td>Pair</td>
-                        <td onClick={() => pairCheck(1)}>{oneScores.pairSaved ? oneScores.pair : ""}</td>
+                        <td style={onePlStyle} onClick={() => pairCheck(1)}>{oneScores.pairSaved ? oneScores.pair : ""}</td>
                         <td style={twoPlStyle} onClick={() => pairCheck(2)}>{twoScores.pairSaved ? twoScores.pair : ""}</td>
                         <td style={threePlStyle} onClick={() => pairCheck(3)}>{threeScores.pairSaved ? threeScores.pair : ""}</td>
                         <td style={fourPlStyle} onClick={() => pairCheck(4)}>{fourScores.pairSaved ? fourScores.pair : ""}</td>
@@ -1624,7 +1582,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>2xPair</td>
-                        <td onClick={() => twoPairCheck(1)}>{oneScores.twoPairSaved ? oneScores.twoPair : ""}</td>
+                        <td style={onePlStyle} onClick={() => twoPairCheck(1)}>{oneScores.twoPairSaved ? oneScores.twoPair : ""}</td>
                         <td style={twoPlStyle} onClick={() => twoPairCheck(2)}>{twoScores.twoPairSaved ? twoScores.twoPair : ""}</td>
                         <td style={threePlStyle} onClick={() => twoPairCheck(3)}>{threeScores.twoPairSaved ? threeScores.twoPair : ""}</td>
                         <td style={fourPlStyle} onClick={() => twoPairCheck(4)}>{fourScores.twoPairSaved ? fourScores.twoPair : ""}</td>
@@ -1632,7 +1590,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>3X</td>
-                        <td onClick={() => threeOfKindCheck(1)}>{oneScores.threeOfKindSaved ? oneScores.threeOfKind : ""}</td>
+                        <td style={onePlStyle} onClick={() => threeOfKindCheck(1)}>{oneScores.threeOfKindSaved ? oneScores.threeOfKind : ""}</td>
                         <td style={twoPlStyle} onClick={() => threeOfKindCheck(2)}>{twoScores.threeOfKindSaved ? twoScores.threeOfKind : ""}</td>
                         <td style={threePlStyle} onClick={() => threeOfKindCheck(3)}>{threeScores.threeOfKindSaved ? threeScores.threeOfKind : ""}</td>
                         <td style={fourPlStyle} onClick={() => threeOfKindCheck(4)}>{fourScores.threeOfKindSaved ? fourScores.threeOfKind : ""}</td>
@@ -1640,7 +1598,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>4X</td>
-                        <td onClick={() => fourOfKindCheck(1)}>{oneScores.fourOfKindSaved ? oneScores.fourOfKind : ""}</td>
+                        <td style={onePlStyle} onClick={() => fourOfKindCheck(1)}>{oneScores.fourOfKindSaved ? oneScores.fourOfKind : ""}</td>
                         <td style={twoPlStyle} onClick={() => fourOfKindCheck(2)}>{twoScores.fourOfKindSaved ? twoScores.fourOfKind : ""}</td>
                         <td style={threePlStyle} onClick={() => fourOfKindCheck(3)}>{threeScores.fourOfKindSaved ? threeScores.fourOfKind : ""}</td>
                         <td style={fourPlStyle} onClick={() => fourOfKindCheck(4)}>{fourScores.fourOfKindSaved ? fourScores.fourOfKind : ""}</td>
@@ -1648,7 +1606,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>S straight</td>
-                        <td onClick={() => smallStraightCheck(1)}>{oneScores.smallStraightSaved ? oneScores.smallStraight : ""}</td>
+                        <td style={onePlStyle} onClick={() => smallStraightCheck(1)}>{oneScores.smallStraightSaved ? oneScores.smallStraight : ""}</td>
                         <td style={twoPlStyle} onClick={() => smallStraightCheck(2)}>{twoScores.smallStraightSaved ? twoScores.smallStraight : ""}</td>
                         <td style={threePlStyle} onClick={() => smallStraightCheck(3)}>{threeScores.smallStraightSaved ? threeScores.smallStraight : ""}</td>
                         <td style={fourPlStyle} onClick={() => smallStraightCheck(4)}>{fourScores.smallStraightSaved ? fourScores.smallStraight : ""}</td>
@@ -1656,7 +1614,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>L straight</td>
-                        <td onClick={() => largeStraightCheck(1)}>{oneScores.largeStraightSaved ? oneScores.largeStraight : ""}</td>
+                        <td style={onePlStyle} onClick={() => largeStraightCheck(1)}>{oneScores.largeStraightSaved ? oneScores.largeStraight : ""}</td>
                         <td style={twoPlStyle} onClick={() => largeStraightCheck(2)}>{twoScores.largeStraightSaved ? twoScores.largeStraight : ""}</td>
                         <td style={threePlStyle} onClick={() => largeStraightCheck(3)}>{threeScores.largeStraightSaved ? threeScores.largeStraight : ""}</td>
                         <td style={fourPlStyle} onClick={() => largeStraightCheck(4)}>{fourScores.largeStraightSaved ? fourScores.largeStraight : ""}</td>
@@ -1664,7 +1622,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>Full</td>
-                        <td onClick={() => fullCheck(1)}>{oneScores.fullSaved ? oneScores.full : ""}</td>
+                        <td style={onePlStyle} onClick={() => fullCheck(1)}>{oneScores.fullSaved ? oneScores.full : ""}</td>
                         <td style={twoPlStyle} onClick={() => fullCheck(2)}>{twoScores.fullSaved ? twoScores.full : ""}</td>
                         <td style={threePlStyle} onClick={() => fullCheck(3)}>{threeScores.fullSaved ? threeScores.full : ""}</td>
                         <td style={fourPlStyle} onClick={() => fullCheck(4)}>{fourScores.fullSaved ? fourScores.full : ""}</td>
@@ -1672,7 +1630,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>Chance</td>
-                        <td onClick={() => chanceCheck(1)}>{oneScores.chanceSaved ? oneScores.chance : ""}</td>
+                        <td style={onePlStyle} onClick={() => chanceCheck(1)}>{oneScores.chanceSaved ? oneScores.chance : ""}</td>
                         <td style={twoPlStyle} onClick={() => chanceCheck(2)}>{twoScores.chanceSaved ? twoScores.chance : ""}</td>
                         <td style={threePlStyle} onClick={() => chanceCheck(3)}>{threeScores.chanceSaved ? threeScores.chance : ""}</td>
                         <td style={fourPlStyle} onClick={() => chanceCheck(4)}>{fourScores.chanceSaved ? fourScores.chance : ""}</td>
@@ -1680,7 +1638,7 @@ const GameTable = ({
                     </tr>
                     <tr>
                         <td>5X</td>
-                        <td onClick={() => fiveOfKindCheck(1)}>{oneScores.fiveOfKindSaved ? oneScores.fiveOfKind : ""}</td>
+                        <td style={onePlStyle} onClick={() => fiveOfKindCheck(1)}>{oneScores.fiveOfKindSaved ? oneScores.fiveOfKind : ""}</td>
                         <td style={twoPlStyle} onClick={() => fiveOfKindCheck(2)}>{twoScores.fiveOfKindSaved ? twoScores.fiveOfKind : ""}</td>
                         <td style={threePlStyle} onClick={() => fiveOfKindCheck(3)}>{threeScores.fiveOfKindSaved ? threeScores.fiveOfKind : ""}</td>
                         <td style={fourPlStyle} onClick={() => fiveOfKindCheck(4)}>{fourScores.fiveOfKindSaved ? fourScores.fiveOfKind : ""}</td>
@@ -1690,7 +1648,7 @@ const GameTable = ({
                 <tfoot>
                     <tr className="sum-row">
                         <td className="total-cell">TOTAL</td>
-                        <td>{(oneScores.total > 0) ? oneScores.total : 0}</td>
+                        <td style={onePlStyle}>{(oneScores.total > 0) ? oneScores.total : 0}</td>
                         <td style={twoPlStyle}>{(twoScores.total > 0) ? twoScores.total : 0}</td>
                         <td style={threePlStyle}>{(threeScores.total > 0) ? threeScores.total : 0}</td>
                         <td style={fourPlStyle}>{(fourScores.total > 0) ? fourScores.total : 0}</td>

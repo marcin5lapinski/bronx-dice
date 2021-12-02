@@ -114,3 +114,21 @@
   font-family: 'Press Start 2P', cursive;
   margin-top: 10px;
 }
+
+.who-won {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  margin: 35px 20px;
+  font-size: 20px;
+  font-family: 'Press Start 2P', cursive;
+  color: red;
+  border: 1px solidd black;
+}
+
+.again-btn {
+  background: navy;
+  color: gold;
+  margin-top: 10px;
+}

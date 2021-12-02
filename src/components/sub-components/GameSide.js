@@ -1,7 +1,148 @@
 import React from "react";
 import RollingButton from "./RollingButton";
+import img from "../../images/bronx-dice_logo.png";
 
-const GameSide = ( { setDiceState, diceArray, clicked, setClicked, rollCount, setRollCount } ) => {
+const GameSide = ( {
+            setDiceState,
+            diceArray,
+            clicked,
+            setClicked,
+            rollCount,
+            setRollCount,
+            oneScores,
+            setOneScores,
+            twoScores,
+            setTwoScores,
+            threeScores,
+            setThreeScores,
+            fourScores,
+            setFourScores,
+            fiveScores,
+            setFiveScores,
+            countPlayers,
+            playersArray
+        } ) => {
+
+    const IsGameFinished = () => {
+        if (countPlayers === 1 && !oneScores.totalSaved) {
+            return <img src={img} alt="bronx-dice-logo" width="372" height="66"/>
+        } else if (countPlayers === 2 && !oneScores.totalSaved && !twoScores.totalSaved) {
+            return <img src={img} alt="bronx-dice-logo" width="372" height="66"/>
+        } else if (countPlayers === 3 && !oneScores.totalSaved && !twoScores.totalSaved && !threeScores.totalSaved) {
+            return <img src={img} alt="bronx-dice-logo" width="372" height="66"/>
+        } else if (countPlayers === 4 && !oneScores.totalSaved && !twoScores.totalSaved && !threeScores.totalSaved && !fourScores.totalSaved) {
+            return <img src={img} alt="bronx-dice-logo" width="372" height="66"/>
+        } else if (countPlayers === 5 && !oneScores.totalSaved && !twoScores.totalSaved && !threeScores.totalSaved && !fourScores.totalSaved && !fiveScores.totalSaved) {
+            return <img src={img} alt="bronx-dice-logo" width="372" height="66"/>
+        } else if (countPlayers === 1 && oneScores.totalSaved) {
+            return (
+                <div className="who-won">
+                    <p>The winner is {playersArray[0]}!</p>
+                    <a href="./pre-game"><button className="again-btn btn">Play again</button></a>
+                </div>
+            )
+        } else if (countPlayers === 2 &&  oneScores.totalSaved && twoScores.totalSaved && oneScores.total > twoScores.total) {
+            return  (
+                <div className="who-won">
+                    <p>The winner is {playersArray[0]}!</p>
+                    <a href="./pre-game"><button className="again-btn btn">Play again</button></a>
+                </div>
+            )
+        } else if (countPlayers === 2 &&  oneScores.totalSaved && twoScores.totalSaved && oneScores.total < twoScores.total) {
+            return  (
+                <div className="who-won">
+                    <p>The winner is {playersArray[1]}!</p>
+                    <a href="./pre-game"><button className="again-btn btn">Play again</button></a>
+                </div>
+            )
+        } else if (countPlayers === 3 &&  oneScores.totalSaved && twoScores.totalSaved && threeScores.totalSaved && oneScores.total > twoScores.total && oneScores.total > threeScores.total) {
+            return  (
+                <div className="who-won">
+                    <p>The winner is {playersArray[0]}!</p>
+                    <a href="./pre-game"><button className="again-btn btn">Play again</button></a>
+                </div>
+            )
+        } else if (countPlayers === 3 &&  oneScores.totalSaved && twoScores.totalSaved && threeScores.totalSaved && oneScores.total < twoScores.total && twoScores.total > threeScores.total) {
+            return  (
+                <div className="who-won">
+                    <p>The winner is {playersArray[1]}!</p>
+                    <a href="./pre-game"><button className="again-btn btn">Play again</button></a>
+                </div>
+            )
+        } else if (countPlayers === 3 &&  oneScores.totalSaved && twoScores.totalSaved && threeScores.totalSaved && oneScores.total < threeScores.total && twoScores.total < threeScores.total) {
+            return  (
+                <div className="who-won">
+                    <p>The winner is {playersArray[2]}!</p>
+                    <a href="./pre-game"><button className="again-btn btn">Play again</button></a>
+                </div>
+            )
+        } else if (countPlayers === 4 &&  oneScores.totalSaved && twoScores.totalSaved && threeScores.totalSaved && fourScores.totalSaved && oneScores.total > twoScores.total && oneScores.total > threeScores.total && oneScores.total > fourScores.total) {
+            return  (
+                <div className="who-won">
+                    <p>The winner is {playersArray[0]}!</p>
+                    <a href="./pre-game"><button className="again-btn btn">Play again</button></a>
+                </div>
+            )
+        } else if (countPlayers === 4 &&  oneScores.totalSaved && twoScores.totalSaved && threeScores.totalSaved && fourScores.totalSaved && oneScores.total < twoScores.total && twoScores.total > threeScores.total && twoScores.total > fourScores.total) {
+            return  (
+                <div className="who-won">
+                    <p>The winner is {playersArray[1]}!</p>
+                    <a href="./pre-game"><button className="again-btn btn">Play again</button></a>
+                </div>
+            )
+        } else if (countPlayers === 4 &&  oneScores.totalSaved && twoScores.totalSaved && threeScores.totalSaved && fourScores.totalSaved && threeScores.total > oneScores.total && twoScores.total < threeScores.total && threeScores.total > fourScores.total) {
+            return  (
+                <div className="who-won">
+                    <p>The winner is {playersArray[2]}!</p>
+                    <a href="./pre-game"><button className="again-btn btn">Play again</button></a>
+                </div>
+            )
+        } else if (countPlayers === 4 &&  oneScores.totalSaved && twoScores.totalSaved && threeScores.totalSaved && fourScores.totalSaved && fourScores.total > oneScores.total && twoScores.total < fourScores.total && threeScores.total < fourScores.total) {
+            return  (
+                <div className="who-won">
+                    <p>The winner is {playersArray[3]}!</p>
+                    <a href="./pre-game"><button className="again-btn btn">Play again</button></a>
+                </div>
+            )
+        } else if (countPlayers === 5 &&  oneScores.totalSaved && twoScores.totalSaved && threeScores.totalSaved && fourScores.totalSaved && fiveScores.totalSaved && oneScores.total > twoScores.total && oneScores.total > threeScores.total && oneScores.total > fourScores.total && oneScores.total > fiveScores.total) {
+            return  (
+                <div className="who-won">
+                    <p>The winner is {playersArray[0]}!</p>
+                    <a href="./pre-game"><button className="again-btn btn">Play again</button></a>
+                </div>
+            )
+        } else if (countPlayers === 5 &&  oneScores.totalSaved && twoScores.totalSaved && threeScores.totalSaved && fourScores.totalSaved && fiveScores.totalSaved && twoScores.total > oneScores.total && twoScores.total > threeScores.total && twoScores.total > fourScores.total && twoScores.total > fiveScores.total) {
+            return  (
+                <div className="who-won">
+                    <p>The winner is {playersArray[1]}!</p>
+                    <a href="./pre-game"><button className="again-btn btn">Play again</button></a>
+                </div>
+            )
+        } else if (countPlayers === 5 &&  oneScores.totalSaved && twoScores.totalSaved && threeScores.totalSaved && fourScores.totalSaved && fiveScores.totalSaved && threeScores.total > oneScores.total && threeScores.total > twoScores.total && threeScores.total > fourScores.total && threeScores.total > fiveScores.total) {
+            return  (
+                <div className="who-won">
+                    <p>The winner is {playersArray[2]}!</p>
+                    <a href="./pre-game"><button className="again-btn btn">Play again</button></a>
+                </div>
+            )
+        } else if (countPlayers === 5 &&  oneScores.totalSaved && twoScores.totalSaved && threeScores.totalSaved && fourScores.totalSaved && fiveScores.totalSaved && fourScores.total > oneScores.total && fourScores.total > twoScores.total && threeScores.total < fourScores.total && fourScores.total > fiveScores.total) {
+            return  (
+                <div className="who-won">
+                    <p>The winner is {playersArray[3]}!</p>
+                    <a href="./pre-game"><button className="again-btn btn">Play again</button></a>
+                </div>
+            )
+        } else if (countPlayers === 5 &&  oneScores.totalSaved && twoScores.totalSaved && threeScores.totalSaved && fourScores.totalSaved && fiveScores.totalSaved && fiveScores.total > oneScores.total && fiveScores.total > twoScores.total && fiveScores.total > threeScores.total && fourScores.total < fiveScores.total) {
+            return  (
+                <div className="who-won">
+                    <p>The winner is {playersArray[4]}!</p>
+                    <a href="./pre-game"><button className="again-btn btn">Play again</button></a>
+                </div>
+            )
+        } else {
+            return <img src={img} alt="bronx-dice-logo" width="372" height="66"/>
+        }
+    }
 
     const drawDice = (value) => {
         if (value === 1) {
@@ -114,12 +255,10 @@ const GameSide = ( { setDiceState, diceArray, clicked, setClicked, rollCount, se
 
     return (
         <div className="dice-side">
-            <div className="saved-dice">
-                <div className="saved-single-dice"></div>
-                <div className="saved-single-dice"></div>
-                <div className="saved-single-dice"></div>
-                <div className="saved-single-dice"></div>
-                <div className="saved-single-dice"></div>
+            <div className="top-logo">
+                
+                <IsGameFinished />
+                
             </div>
             <div className="roll-dice-box">
                 <div className="rollers">
@@ -137,7 +276,17 @@ const GameSide = ( { setDiceState, diceArray, clicked, setClicked, rollCount, se
                 clicked={clicked}
                 diceArray={diceArray}
                 rollCount={rollCount}
-                setRollCount={setRollCount} 
+                setRollCount={setRollCount}
+                oneScores={oneScores}
+                setOneScores={setOneScores}
+                twoScores={twoScores}
+                setTwoScores={setTwoScores}
+                threeScores={threeScores}
+                setThreeScores={setThreeScores}
+                fourScores={fourScores}
+                setFourScores={setFourScores}
+                fiveScores={fiveScores}
+                setFiveScores={setFiveScores} 
             />
         </div>
     );

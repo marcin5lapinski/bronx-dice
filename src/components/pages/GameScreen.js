@@ -67,6 +67,18 @@ const GameScreen = ( { playersArray } ) => {
                     setClicked={setClicked}
                     rollCount={rollCount}
                     setRollCount={setRollCount}
+                    oneScores={oneScores}
+                    setOneScores={setOneScores}
+                    twoScores={twoScores}
+                    setTwoScores={setTwoScores}
+                    threeScores={threeScores}
+                    setThreeScores={setThreeScores}
+                    fourScores={fourScores}
+                    setFourScores={setFourScores}
+                    fiveScores={fiveScores}
+                    setFiveScores={setFiveScores}
+                    playersArray={playersArray}
+                    countPlayers={countPlayers}
                 />
             </div>
         </div>
