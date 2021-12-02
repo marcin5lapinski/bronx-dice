@@ -488,8 +488,6 @@ const GameTable = ({
         }
     }
 
-    console.log("bonus 3 " + threeScores.bonus, "bonus 5 " + threeScores.bonus);
-
     const pairCheck = (plNum) => {
         
         const pair = diceArray.filter((el) => diceArray.indexOf(el) !== diceArray.lastIndexOf(el)) 
@@ -1463,8 +1461,6 @@ const GameTable = ({
             nextTurn();
         }
     }
-
-    console.log("ONE " + oneScores.upperFilled, "TWO " + twoScores.upperFilled, "THREE " + threeScores.upperFilled, "FOUR " + fourScores.upperFilled, "FIVE " + fiveScores.upperFilled);
 
     const onePlStyle = {
         background: queue === 1 ? "dodgerblue" : "transparent",

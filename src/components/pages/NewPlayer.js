@@ -11,7 +11,7 @@ const NewPlayer = () => {
         e.preventDefault();
         const db = getFirestore(app);
         const docRef = await addDoc(collection(db, "users"), {
-            name: {name},
+            name: name,
             games: 0,
             won: 0,
             points: [],

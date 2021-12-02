@@ -81,7 +81,6 @@ const RollingButton = ( {
     
         isUpperFilled();
         isTotalSaved();
-        console.log("total saved 1 " + oneScores.totalSaved, "total saved 2 " + twoScores.totalSaved);
 
         setDiceState({
             dieOne: (!clicked.one) ? Math.floor(Math.random() * (6 - 1 + 1)) + 1 : diceArray[0],
