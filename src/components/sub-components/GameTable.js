@@ -46,12 +46,84 @@ const GameTable = ({
         if (queue >= countPlayers) {
             setQueue(1);
         }
-    }
 
-    console.log("Q = " + queue + " cp = " + countPlayers);
+        const isUpperFilled = () => {
+            if (!oneScores.upperFilled && oneScores.acesSaved && oneScores.twosSaved && oneScores.threesSaved && oneScores.foursSaved && oneScores.fivesSaved && oneScores.sixesSaved) {
+                setOneScores({
+                    ...oneScores,
+                    upperFilled: true
+                })
+            } else if (!twoScores.upperFilled && twoScores.acesSaved && twoScores.twosSaved && twoScores.threesSaved && twoScores.foursSaved && twoScores.fivesSaved && twoScores.sixesSaved) {
+                setTwoScores({
+                    ...twoScores,
+                    upperFilled: true
+                })
+            } else if (!threeScores.upperFilled && threeScores.acesSaved && threeScores.twosSaved && threeScores.threesSaved && threeScores.foursSaved && threeScores.fivesSaved && threeScores.sixesSaved) {
+                setThreeScores({
+                    ...threeScores,
+                    upperFilled: true
+                })
+            } else if (!fourScores.upperFilled && fourScores.acesSaved && fourScores.twosSaved && fourScores.threesSaved && fourScores.foursSaved && fourScores.fivesSaved && fourScores.sixesSaved) {
+                setFourScores({
+                    ...fourScores,
+                    upperFilled: true
+                })
+            } else if (!fiveScores.upperFilled && fiveScores.acesSaved && fiveScores.twosSaved && fiveScores.threesSaved && fiveScores.foursSaved && fiveScores.fivesSaved && fiveScores.sixesSaved) {
+                setFiveScores({
+                    ...fiveScores,
+                    upperFilled: true
+                })
+            }
+        }
+
+        isUpperFilled();
+
+        const bonusCheck = () => {
+
+            if (!oneScores.bonusSaved && oneScores.sum >= 63) {
+                setOneScores({
+                    ...oneScores,
+                    bonus: 50,
+                    bonusSaved: true,
+                    sum: oneScores.sum + 50
+                })
+            } else if (!twoScores.bonusSaved && twoScores.sum >= 63) {
+                setTwoScores({
+                    ...twoScores,
+                    bonus: 50,
+                    bonusSaved: true,
+                    sum: twoScores.sum + 50
+                })
+            } else if (!threeScores.bonusSaved && threeScores.sum >= 63) {
+                setThreeScores({
+                    ...threeScores,
+                    bonus: 50,
+                    bonusSaved: true,
+                    sum: threeScores.sum + 50
+                })
+            } else if (!fourScores.bonusSaved && fourScores.sum >= 63) {
+                setFourScores({
+                    ...fourScores,
+                    bonus: 50,
+                    bonusSaved: true,
+                    sum: fourScores.sum + 50
+                })
+            } else if (!fiveScores.bonusSaved && fiveScores.sum >= 63) {
+                setFiveScores({
+                    ...fiveScores,
+                    bonus: 50,
+                    bonusSaved: true,
+                    sum: fiveScores.sum + 50
+                })
+            }
+        }
+
+        bonusCheck();
+    }
 
 
     const acesCheck = (plNum) => {
+
 
         const isOne = (el) => {
             return (el === 1);
@@ -71,39 +143,8 @@ const GameTable = ({
                 return sum = 0;
             }
         }
-    
+
         score();
-
-        const isUpperFilled = () => {
-            if (oneScores.twosSaved && oneScores.threesSaved && oneScores.foursSaved && oneScores.fivesSaved && oneScores.sixesSaved) {
-                setOneScores({
-                    ...oneScores,
-                    upperFilled: true
-                })
-            } else if (twoScores.twosSaved && twoScores.threesSaved && twoScores.foursSaved && twoScores.fivesSaved && twoScores.sixesSaved) {
-                setTwoScores({
-                    ...twoScores,
-                    upperFilled: true
-                })
-            } else if (threeScores.twosSaved && threeScores.threesSaved && threeScores.foursSaved && threeScores.fivesSaved && threeScores.sixesSaved) {
-                setThreeScores({
-                    ...threeScores,
-                    upperFilled: true
-                })
-            } else if (fourScores.twosSaved && fourScores.threesSaved && fourScores.foursSaved && fourScores.fivesSaved && fourScores.sixesSaved) {
-                setFourScores({
-                    ...fourScores,
-                    upperFilled: true
-                })
-            } else if (fiveScores.twosSaved && fiveScores.threesSaved && fiveScores.foursSaved && fiveScores.fivesSaved && fiveScores.sixesSaved) {
-                setFiveScores({
-                    ...fiveScores,
-                    upperFilled: true
-                })
-            }
-        }
-
-        isUpperFilled();
     
         if (plNum === 1 && !oneScores.acesSaved) {
             setOneScores({
@@ -146,9 +187,7 @@ const GameTable = ({
             })
             nextTurn();
         }
-        
     }
-    console.log("upper " + oneScores.upperFilled);
 
     const twosCheck = (plNum) => {
 
@@ -172,37 +211,6 @@ const GameTable = ({
         }
     
         score();
-
-        const isUpperFilled = () => {
-            if (oneScores.acesSaved && oneScores.threesSaved && oneScores.foursSaved && oneScores.fivesSaved && oneScores.sixesSaved) {
-                setOneScores({
-                    ...oneScores,
-                    upperFilled: true
-                })
-            } else if (twoScores.acesSaved && twoScores.threesSaved && twoScores.foursSaved && twoScores.fivesSaved && twoScores.sixesSaved) {
-                setTwoScores({
-                    ...twoScores,
-                    upperFilled: true
-                })
-            } else if (threeScores.acesSaved && threeScores.threesSaved && threeScores.foursSaved && threeScores.fivesSaved && threeScores.sixesSaved) {
-                setThreeScores({
-                    ...threeScores,
-                    upperFilled: true
-                })
-            } else if (fourScores.acesSaved && fourScores.threesSaved && fourScores.foursSaved && fourScores.fivesSaved && fourScores.sixesSaved) {
-                setFourScores({
-                    ...fourScores,
-                    upperFilled: true
-                })
-            } else if (fiveScores.acesSaved && fiveScores.threesSaved && fiveScores.foursSaved && fiveScores.fivesSaved && fiveScores.sixesSaved) {
-                setFiveScores({
-                    ...fiveScores,
-                    upperFilled: true
-                })
-            }
-        }
-
-        isUpperFilled();
     
         if (plNum === 1 && !oneScores.twosSaved) {
             setOneScores({
@@ -271,36 +279,6 @@ const GameTable = ({
     
         score();
 
-        const isUpperFilled = () => {
-            if (oneScores.twosSaved && oneScores.acesSaved && oneScores.foursSaved && oneScores.fivesSaved && oneScores.sixesSaved) {
-                setOneScores({
-                    ...oneScores,
-                    upperFilled: true
-                })
-            } else if (twoScores.twosSaved && twoScores.acesSaved && twoScores.foursSaved && twoScores.fivesSaved && twoScores.sixesSaved) {
-                setTwoScores({
-                    ...twoScores,
-                    upperFilled: true
-                })
-            } else if (threeScores.twosSaved && threeScores.acesSaved && threeScores.foursSaved && threeScores.fivesSaved && threeScores.sixesSaved) {
-                setThreeScores({
-                    ...threeScores,
-                    upperFilled: true
-                })
-            } else if (fourScores.twosSaved && fourScores.acesSaved && fourScores.foursSaved && fourScores.fivesSaved && fourScores.sixesSaved) {
-                setFourScores({
-                    ...fourScores,
-                    upperFilled: true
-                })
-            } else if (fiveScores.twosSaved && fiveScores.acesSaved && fiveScores.foursSaved && fiveScores.fivesSaved && fiveScores.sixesSaved) {
-                setFiveScores({
-                    ...fiveScores,
-                    upperFilled: true
-                })
-            }
-        }
-
-        isUpperFilled();
     
         if (plNum === 1 && !oneScores.threesSaved) {
             setOneScores({
@@ -367,37 +345,6 @@ const GameTable = ({
         }
     
         score();
-
-        const isUpperFilled = () => {
-            if (oneScores.twosSaved && oneScores.threesSaved && oneScores.acesSaved && oneScores.fivesSaved && oneScores.sixesSaved) {
-                setOneScores({
-                    ...oneScores,
-                    upperFilled: true
-                })
-            } else if (twoScores.twosSaved && twoScores.threesSaved && twoScores.acesSaved && twoScores.fivesSaved && twoScores.sixesSaved) {
-                setTwoScores({
-                    ...twoScores,
-                    upperFilled: true
-                })
-            } else if (threeScores.twosSaved && threeScores.threesSaved && threeScores.acesSaved && threeScores.fivesSaved && threeScores.sixesSaved) {
-                setThreeScores({
-                    ...threeScores,
-                    upperFilled: true
-                })
-            } else if (fourScores.twosSaved && fourScores.threesSaved && fourScores.acesSaved && fourScores.fivesSaved && fourScores.sixesSaved) {
-                setFourScores({
-                    ...fourScores,
-                    upperFilled: true
-                })
-            } else if (fiveScores.twosSaved && fiveScores.threesSaved && fiveScores.acesSaved && fiveScores.fivesSaved && fiveScores.sixesSaved) {
-                setFiveScores({
-                    ...fiveScores,
-                    upperFilled: true
-                })
-            }
-        }
-
-        isUpperFilled();
     
         if (plNum === 1 && !oneScores.foursSaved) {
             setOneScores({
@@ -464,37 +411,6 @@ const GameTable = ({
         }
     
         score();
-
-        const isUpperFilled = () => {
-            if (oneScores.twosSaved && oneScores.threesSaved && oneScores.foursSaved && oneScores.acesSaved && oneScores.sixesSaved) {
-                setOneScores({
-                    ...oneScores,
-                    upperFilled: true
-                })
-            } else if (twoScores.twosSaved && twoScores.threesSaved && twoScores.foursSaved && twoScores.acesSaved && twoScores.sixesSaved) {
-                setTwoScores({
-                    ...twoScores,
-                    upperFilled: true
-                })
-            } else if (threeScores.twosSaved && threeScores.threesSaved && threeScores.foursSaved && threeScores.acesSaved && threeScores.sixesSaved) {
-                setThreeScores({
-                    ...threeScores,
-                    upperFilled: true
-                })
-            } else if (fourScores.twosSaved && fourScores.threesSaved && fourScores.foursSaved && fourScores.acesSaved && fourScores.sixesSaved) {
-                setFourScores({
-                    ...fourScores,
-                    upperFilled: true
-                })
-            } else if (fiveScores.twosSaved && fiveScores.threesSaved && fiveScores.foursSaved && fiveScores.acesSaved && fiveScores.sixesSaved) {
-                setFiveScores({
-                    ...fiveScores,
-                    upperFilled: true
-                })
-            }
-        }
-
-        isUpperFilled();
     
         if (plNum === 1 && !oneScores.fivesSaved) {
             setOneScores({
@@ -561,37 +477,6 @@ const GameTable = ({
         }
     
         score();
-
-        const isUpperFilled = () => {
-            if (oneScores.twosSaved && oneScores.threesSaved && oneScores.foursSaved && oneScores.fivesSaved && oneScores.acesSaved) {
-                setOneScores({
-                    ...oneScores,
-                    upperFilled: true
-                })
-            } else if (twoScores.twosSaved && twoScores.threesSaved && twoScores.foursSaved && twoScores.fivesSaved && twoScores.acesSaved) {
-                setTwoScores({
-                    ...twoScores,
-                    upperFilled: true
-                })
-            } else if (threeScores.twosSaved && threeScores.threesSaved && threeScores.foursSaved && threeScores.fivesSaved && threeScores.acesSaved) {
-                setThreeScores({
-                    ...threeScores,
-                    upperFilled: true
-                })
-            } else if (fourScores.twosSaved && fourScores.threesSaved && fourScores.foursSaved && fourScores.fivesSaved && fourScores.acesSaved) {
-                setFourScores({
-                    ...fourScores,
-                    upperFilled: true
-                })
-            } else if (fiveScores.twosSaved && fiveScores.threesSaved && fiveScores.foursSaved && fiveScores.fivesSaved && fiveScores.acesSaved) {
-                setFiveScores({
-                    ...fiveScores,
-                    upperFilled: true
-                })
-            }
-        }
-
-        isUpperFilled();
     
         if (plNum === 1 && !oneScores.sixesSaved) {
             setOneScores({
@@ -635,6 +520,8 @@ const GameTable = ({
             nextTurn();
         }
     }
+
+    console.log("bonus 3 " + threeScores.bonus, "bonus 5 " + threeScores.bonus);
 
     const pairCheck = (plNum) => {
         
@@ -1610,44 +1497,35 @@ const GameTable = ({
         }
     }
 
-    const bonusCheck = (plNum) => {
+    console.log("ONE " + oneScores.upperFilled, "TWO " + twoScores.upperFilled, "THREE " + threeScores.upperFilled, "FOUR " + fourScores.upperFilled, "FIVE " + fiveScores.upperFilled);
 
-        if (plNum === 1 && !oneScores.bonusSaved && oneScores.sum >= 63) {
-            setOneScores({
-                ...oneScores,
-                bonus: 50,
-                bonusSaved: true,
-                sum: oneScores.sum + 50
-            })
-        } else if (plNum === 2 && !twoScores.bonusSaved && twoScores.sum >= 63) {
-            setTwoScores({
-                ...twoScores,
-                bonus: 50,
-                bonusSaved: true,
-                sum: twoScores.sum + 50
-            })
-        } else if (plNum === 3 && !threeScores.bonuseSaved && twoScores.sum >= 63) {
-            setThreeScores({
-                ...threeScores,
-                bonus: 50,
-                bonusSaved: true,
-                sum: threeScores.sum + 50
-            })
-        } else if (plNum === 4 && !fourScores.bonusSaved && twoScores.sum >= 63) {
-            setFourScores({
-                ...fourScores,
-                bonus: 50,
-                bonusSaved: true,
-                sum: fourScores.sum + 50
-            })
-        } else if (plNum === 5 && !fiveScores.bonusSaved && twoScores.sum >= 63) {
-            setFiveScores({
-                ...fiveScores,
-                bonus: 50,
-                bonusSaved: true,
-                sum: fiveScores.sum + 50
-            })
-        }
+    const twoPlStyle = {
+        display: playersArray.length < 2 ? "none" : "",
+    }
+    const threePlStyle = {
+        display: playersArray.length < 3 ? "none" : "",
+    }
+    const fourPlStyle = {
+        display: playersArray.length < 4 ? "none" : "",
+    }
+    const fivePlStyle = {
+        display: playersArray.length < 5 ? "none" : "",
+    }
+
+    const oneTurn = {
+        background: queue === 1 ? "dodgerblue" : "transparent",
+    }
+    const twoTurn = {
+        background: queue === 2 ? "dodgerblue" : "transparent",
+    }
+    const threeTurn = {
+        background: queue === 3 ? "dodgerblue" : "transparent",
+    }
+    const fourTurn = {
+        background: queue === 4 ? "dodgerblue" : "transparent",
+    }
+    const fiveTurn = {
+        background: queue === 5 ? "dodgerblue" : "transparent",
     }
 
     return (
@@ -1657,166 +1535,166 @@ const GameTable = ({
                     <tr className="turn-mark">
                         <td className="turn-mark"></td>
                         <td className="turn-mark">{queue === 1 ? "V" : ""}</td>
-                        <td className="turn-mark" style={{display: playersArray.length < 2 ? "none" : ""}}>{queue === 2 ? "V" : ""}</td>
-                        <td className="turn-mark" style={{display: playersArray.length < 3 ? "none" : ""}}>{queue === 3 ? "V" : ""}</td>
-                        <td className="turn-mark" style={{display: playersArray.length < 4 ? "none" : ""}}>{queue === 4 ? "V" : ""}</td>
-                        <td className="turn-mark" style={{display: playersArray.length < 5 ? "none" : ""}}>{queue === 5 ? "V" : ""}</td>
+                        <td className="turn-mark" style={twoPlStyle}>{queue === 2 ? "V" : ""}</td>
+                        <td className="turn-mark" style={threePlStyle}>{queue === 3 ? "V" : ""}</td>
+                        <td className="turn-mark" style={fourPlStyle}>{queue === 4 ? "V" : ""}</td>
+                        <td className="turn-mark" style={fivePlStyle}>{queue === 5 ? "V" : ""}</td>
                     </tr>
                     <tr>
                         <td className="blank-cell"></td>
-                        <td>{playersArray[0]}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>{playersArray[1]}</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>{playersArray[2]}</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>{playersArray[3]}</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>{playersArray[4]}</td>
+                        <td style={oneTurn}>{playersArray[0]}</td>
+                        <td style={twoPlStyle} style={twoTurn}>{playersArray[1]}</td>
+                        <td style={threePlStyle} style={threeTurn}>{playersArray[2]}</td>
+                        <td style={fourPlStyle} style={fourTurn}>{playersArray[3]}</td>
+                        <td style={fivePlStyle} style={fiveTurn}>{playersArray[4]}</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>I</td>
-                        <td onClick={() => acesCheck(queue)}>{oneScores.acesSaved ? oneScores.aces : ""}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>0</td>
+                        <td onClick={() => acesCheck(1)}>{oneScores.acesSaved ? oneScores.aces : ""}</td>
+                        <td style={twoPlStyle} onClick={() => acesCheck(2)}>{twoScores.acesSaved ? twoScores.aces : ""}</td>
+                        <td style={threePlStyle} onClick={() => acesCheck(3)}>{threeScores.acesSaved ? threeScores.aces : ""}</td>
+                        <td style={fourPlStyle} onClick={() => acesCheck(4)}>{fourScores.acesSaved ? fourScores.aces : ""}</td>
+                        <td style={fivePlStyle} onClick={() => acesCheck(5)}>{fiveScores.acesSaved ? fiveScores.aces : ""}</td>
                     </tr>
                     <tr>
                         <td>II</td>
-                        <td onClick={() => twosCheck(queue)}>{oneScores.twosSaved ? oneScores.twos : ""}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>0</td>
+                        <td onClick={() => twosCheck(1)}>{oneScores.twosSaved ? oneScores.twos : ""}</td>
+                        <td style={twoPlStyle} onClick={() => twosCheck(2)}>{twoScores.twosSaved ? twoScores.twos : ""}</td>
+                        <td style={threePlStyle} onClick={() => twosCheck(3)}>{threeScores.twosSaved ? threeScores.twos : ""}</td>
+                        <td style={fourPlStyle} onClick={() => twosCheck(4)}>{fourScores.twosSaved ? fourScores.twos : ""}</td>
+                        <td style={fivePlStyle} onClick={() => twosCheck(5)}>{fiveScores.twosSaved ? fiveScores.twos : ""}</td>
                     </tr>
                     <tr>
                         <td>III</td>
-                        <td onClick={() => threesCheck(queue)}>{oneScores.threesSaved ? oneScores.threes : ""}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>0</td>
+                        <td onClick={() => threesCheck(1)}>{oneScores.threesSaved ? oneScores.threes : ""}</td>
+                        <td style={twoPlStyle} onClick={() => threesCheck(2)}>{twoScores.threesSaved ? twoScores.threes : ""}</td>
+                        <td style={threePlStyle} onClick={() => threesCheck(3)}>{threeScores.threesSaved ? threeScores.threes : ""}</td>
+                        <td style={fourPlStyle} onClick={() => threesCheck(4)}>{fourScores.threesSaved ? fourScores.threes : ""}</td>
+                        <td style={fivePlStyle} onClick={() => threesCheck(5)}>{fiveScores.threesSaved ? fiveScores.threes : ""}</td>
                     </tr>
                     <tr>
                         <td>IV</td>
-                        <td onClick={() => foursCheck(queue)}>{oneScores.foursSaved ? oneScores.fours : ""}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>0</td>
+                        <td onClick={() => foursCheck(1)}>{oneScores.foursSaved ? oneScores.fours : ""}</td>
+                        <td style={twoPlStyle} onClick={() => foursCheck(2)}>{twoScores.foursSaved ? twoScores.fours : ""}</td>
+                        <td style={threePlStyle} onClick={() => foursCheck(3)}>{threeScores.foursSaved ? threeScores.fours : ""}</td>
+                        <td style={fourPlStyle} onClick={() => foursCheck(4)}>{fourScores.foursSaved ? fourScores.fours : ""}</td>
+                        <td style={fivePlStyle} onClick={() => foursCheck(5)}>{fiveScores.foursSaved ? fiveScores.fours : ""}</td>
                     </tr>
                     <tr>
                         <td>V</td>
-                        <td onClick={() => fivesCheck(queue)}>{oneScores.fivesSaved ? oneScores.fives : ""}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>0</td>
+                        <td onClick={() => fivesCheck(1)}>{oneScores.fivesSaved ? oneScores.fives : ""}</td>
+                        <td style={twoPlStyle} onClick={() => fivesCheck(2)}>{twoScores.fivesSaved ? twoScores.fives : ""}</td>
+                        <td style={threePlStyle} onClick={() => fivesCheck(3)}>{threeScores.fivesSaved ? threeScores.fives : ""}</td>
+                        <td style={fourPlStyle} onClick={() => fivesCheck(4)}>{fourScores.fivesSaved ? fourScores.fives : ""}</td>
+                        <td style={fivePlStyle} onClick={() => fivesCheck(5)}>{fiveScores.fivesSaved ? fiveScores.fives : ""}</td>
                     </tr>
                     <tr>
                         <td>VI</td>
-                        <td onClick={() => sixesCheck(queue)}>{oneScores.sixesSaved ? oneScores.sixes : ""}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>0</td>
+                        <td onClick={() => sixesCheck(1)}>{oneScores.sixesSaved ? oneScores.sixes : ""}</td>
+                        <td style={twoPlStyle} onClick={() => sixesCheck(2)}>{twoScores.sixesSaved ? twoScores.sixes : ""}</td>
+                        <td style={threePlStyle} onClick={() => sixesCheck(3)}>{threeScores.sixesSaved ? threeScores.sixes : ""}</td>
+                        <td style={fourPlStyle} onClick={() => sixesCheck(4)}>{fourScores.sixesSaved ? fourScores.sixes : ""}</td>
+                        <td style={fivePlStyle} onClick={() => sixesCheck(5)}>{fiveScores.sixesSaved ? fiveScores.sixes : ""}</td>
                     </tr>
                     <tr className="bonus-row">
                         <td>BONUS</td>
-                        <td onClick={() => bonusCheck(queue)}>{oneScores.bonusSaved ? oneScores.bonus : 0}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>0</td>
+                        <td>{oneScores.bonus > 0 ? oneScores.bonus : 0}</td>
+                        <td style={twoPlStyle}>{twoScores.bonus > 0 ? twoScores.bonus : 0}</td>
+                        <td style={threePlStyle}>{threeScores.bonus > 0 ? threeScores.bonus : 0}</td>
+                        <td style={fourPlStyle}>{fourScores.bonus > 0 ? fourScores.bonus : 0}</td>
+                        <td style={fivePlStyle}>{fiveScores.bonus > 0 ? fiveScores.bonus : 0}</td>
                     </tr>
                     <tr className="sum-row">
                         <td>SUM</td>
-                        <td>{(oneScores.sum > 0) ? oneScores.sum : 0}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>0</td>
+                        <td style={oneTurn}>{(oneScores.sum > 0) ? oneScores.sum : 0}</td>
+                        <td style={twoPlStyle, twoTurn}>{(twoScores.sum > 0) ? twoScores.sum : 0}</td>
+                        <td style={threePlStyle, threeTurn}>{(threeScores.sum > 0) ? threeScores.sum : 0}</td>
+                        <td style={fourPlStyle, fourTurn}>{(fourScores.sum > 0) ? fourScores.sum : 0}</td>
+                        <td style={fivePlStyle, fiveTurn}>{(fiveScores.sum > 0) ? fiveScores.sum : 0}</td>
                     </tr>
                     <tr>
                         <td>Pair</td>
-                        <td onClick={() => pairCheck(queue)}>{oneScores.pairSaved ? oneScores.pair : ""}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>0</td>
+                        <td onClick={() => pairCheck(1)}>{oneScores.pairSaved ? oneScores.pair : ""}</td>
+                        <td style={twoPlStyle} onClick={() => pairCheck(2)}>{twoScores.pairSaved ? twoScores.pair : ""}</td>
+                        <td style={threePlStyle} onClick={() => pairCheck(3)}>{threeScores.pairSaved ? threeScores.pair : ""}</td>
+                        <td style={fourPlStyle} onClick={() => pairCheck(4)}>{fourScores.pairSaved ? fourScores.pair : ""}</td>
+                        <td style={fivePlStyle} onClick={() => pairCheck(5)}>{fiveScores.pairSaved ? fiveScores.pair : ""}</td>
                     </tr>
                     <tr>
                         <td>2xPair</td>
-                        <td onClick={() => twoPairCheck(queue)}>{oneScores.twoPairSaved ? oneScores.twoPair : ""}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>0</td>
+                        <td onClick={() => twoPairCheck(1)}>{oneScores.twoPairSaved ? oneScores.twoPair : ""}</td>
+                        <td style={twoPlStyle} onClick={() => twoPairCheck(2)}>{twoScores.twoPairSaved ? twoScores.twoPair : ""}</td>
+                        <td style={threePlStyle} onClick={() => twoPairCheck(3)}>{threeScores.twoPairSaved ? threeScores.twoPair : ""}</td>
+                        <td style={fourPlStyle} onClick={() => twoPairCheck(4)}>{fourScores.twoPairSaved ? fourScores.twoPair : ""}</td>
+                        <td style={fivePlStyle} onClick={() => twoPairCheck(5)}>{fiveScores.twoPairSaved ? fiveScores.twoPair : ""}</td>
                     </tr>
                     <tr>
                         <td>3X</td>
-                        <td onClick={() => threeOfKindCheck(queue)}>{oneScores.threeOfKindSaved ? oneScores.threeOfKind : ""}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>0</td>
+                        <td onClick={() => threeOfKindCheck(1)}>{oneScores.threeOfKindSaved ? oneScores.threeOfKind : ""}</td>
+                        <td style={twoPlStyle} onClick={() => threeOfKindCheck(2)}>{twoScores.threeOfKindSaved ? twoScores.threeOfKind : ""}</td>
+                        <td style={threePlStyle} onClick={() => threeOfKindCheck(3)}>{threeScores.threeOfKindSaved ? threeScores.threeOfKind : ""}</td>
+                        <td style={fourPlStyle} onClick={() => threeOfKindCheck(4)}>{fourScores.threeOfKindSaved ? fourScores.threeOfKind : ""}</td>
+                        <td style={fivePlStyle} onClick={() => threeOfKindCheck(5)}>{fiveScores.threeOfKindSaved ? fiveScores.threeOfKind : ""}</td>
                     </tr>
                     <tr>
                         <td>4X</td>
-                        <td onClick={() => fourOfKindCheck(queue)}>{oneScores.fourOfKindSaved ? oneScores.fourOfKind : ""}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>0</td>
+                        <td onClick={() => fourOfKindCheck(1)}>{oneScores.fourOfKindSaved ? oneScores.fourOfKind : ""}</td>
+                        <td style={twoPlStyle} onClick={() => fourOfKindCheck(2)}>{twoScores.fourOfKindSaved ? twoScores.fourOfKind : ""}</td>
+                        <td style={threePlStyle} onClick={() => fourOfKindCheck(3)}>{threeScores.fourOfKindSaved ? threeScores.fourOfKind : ""}</td>
+                        <td style={fourPlStyle} onClick={() => fourOfKindCheck(4)}>{fourScores.fourOfKindSaved ? fourScores.fourOfKind : ""}</td>
+                        <td style={fivePlStyle} onClick={() => fourOfKindCheck(5)}>{fiveScores.fourOfKindSaved ? fiveScores.fourOfKind : ""}</td>
                     </tr>
                     <tr>
                         <td>S straight</td>
-                        <td onClick={() => smallStraightCheck(queue)}>{oneScores.smallStraightSaved ? oneScores.smallStraight : ""}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>0</td>
+                        <td onClick={() => smallStraightCheck(1)}>{oneScores.smallStraightSaved ? oneScores.smallStraight : ""}</td>
+                        <td style={twoPlStyle} onClick={() => smallStraightCheck(2)}>{twoScores.smallStraightSaved ? twoScores.smallStraight : ""}</td>
+                        <td style={threePlStyle} onClick={() => smallStraightCheck(3)}>{threeScores.smallStraightSaved ? threeScores.smallStraight : ""}</td>
+                        <td style={fourPlStyle} onClick={() => smallStraightCheck(4)}>{fourScores.smallStraightSaved ? fourScores.smallStraight : ""}</td>
+                        <td style={fivePlStyle} onClick={() => smallStraightCheck(5)}>{fiveScores.smallStraightSaved ? fiveScores.smallStraight : ""}</td>
                     </tr>
                     <tr>
                         <td>L straight</td>
-                        <td onClick={() => largeStraightCheck(queue)}>{oneScores.largeStraightSaved ? oneScores.largeStraight : ""}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>0</td>
+                        <td onClick={() => largeStraightCheck(1)}>{oneScores.largeStraightSaved ? oneScores.largeStraight : ""}</td>
+                        <td style={twoPlStyle} onClick={() => largeStraightCheck(2)}>{twoScores.largeStraightSaved ? twoScores.largeStraight : ""}</td>
+                        <td style={threePlStyle} onClick={() => largeStraightCheck(3)}>{threeScores.largeStraightSaved ? threeScores.largeStraight : ""}</td>
+                        <td style={fourPlStyle} onClick={() => largeStraightCheck(4)}>{fourScores.largeStraightSaved ? fourScores.largeStraight : ""}</td>
+                        <td style={fivePlStyle} onClick={() => largeStraightCheck(5)}>{fiveScores.largeStraightSaved ? fiveScores.largeStraight : ""}</td>
                     </tr>
                     <tr>
                         <td>Full</td>
-                        <td onClick={() => fullCheck(queue)}>{oneScores.fullSaved ? oneScores.full : ""}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>0</td>
+                        <td onClick={() => fullCheck(1)}>{oneScores.fullSaved ? oneScores.full : ""}</td>
+                        <td style={twoPlStyle} onClick={() => fullCheck(2)}>{twoScores.fullSaved ? twoScores.full : ""}</td>
+                        <td style={threePlStyle} onClick={() => fullCheck(3)}>{threeScores.fullSaved ? threeScores.full : ""}</td>
+                        <td style={fourPlStyle} onClick={() => fullCheck(4)}>{fourScores.fullSaved ? fourScores.full : ""}</td>
+                        <td style={fivePlStyle} onClick={() => fullCheck(5)}>{fiveScores.fullSaved ? fiveScores.full : ""}</td>
                     </tr>
                     <tr>
                         <td>Chance</td>
-                        <td onClick={() => chanceCheck(queue)}>{oneScores.chanceSaved ? oneScores.chance : ""}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>0</td>
+                        <td onClick={() => chanceCheck(1)}>{oneScores.chanceSaved ? oneScores.chance : ""}</td>
+                        <td style={twoPlStyle} onClick={() => chanceCheck(2)}>{twoScores.chanceSaved ? twoScores.chance : ""}</td>
+                        <td style={threePlStyle} onClick={() => chanceCheck(3)}>{threeScores.chanceSaved ? threeScores.chance : ""}</td>
+                        <td style={fourPlStyle} onClick={() => chanceCheck(4)}>{fourScores.chanceSaved ? fourScores.chance : ""}</td>
+                        <td style={fivePlStyle} onClick={() => chanceCheck(5)}>{fiveScores.chanceSaved ? fiveScores.chance : ""}</td>
                     </tr>
                     <tr>
                         <td>5X</td>
-                        <td onClick={() => fiveOfKindCheck(queue)}>{oneScores.fiveOfKindSaved ? oneScores.fiveOfKind : ""}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>0</td>
+                        <td onClick={() => fiveOfKindCheck(1)}>{oneScores.fiveOfKindSaved ? oneScores.fiveOfKind : ""}</td>
+                        <td style={twoPlStyle} onClick={() => fiveOfKindCheck(2)}>{twoScores.fiveOfKindSaved ? twoScores.fiveOfKind : ""}</td>
+                        <td style={threePlStyle} onClick={() => fiveOfKindCheck(3)}>{threeScores.fiveOfKindSaved ? threeScores.fiveOfKind : ""}</td>
+                        <td style={fourPlStyle} onClick={() => fiveOfKindCheck(4)}>{fourScores.fiveOfKindSaved ? fourScores.fiveOfKind : ""}</td>
+                        <td style={fivePlStyle} onClick={() => fiveOfKindCheck(5)}>{fiveScores.fiveOfKindSaved ? fiveScores.fiveOfKind : ""}</td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr className="sum-row">
                         <td className="total-cell">TOTAL</td>
                         <td>{(oneScores.total > 0) ? oneScores.total : 0}</td>
-                        <td style={{display: playersArray.length < 2 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 3 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 4 ? "none" : ""}}>0</td>
-                        <td style={{display: playersArray.length < 5 ? "none" : ""}}>0</td>
+                        <td style={twoPlStyle}>{(twoScores.total > 0) ? twoScores.total : 0}</td>
+                        <td style={threePlStyle}>{(threeScores.total > 0) ? threeScores.total : 0}</td>
+                        <td style={fourPlStyle}>{(fourScores.total > 0) ? fourScores.total : 0}</td>
+                        <td style={fivePlStyle}>{(fiveScores.total > 0) ? fiveScores.total : 0}</td>
                     </tr>
                 </tfoot>
             </table>
